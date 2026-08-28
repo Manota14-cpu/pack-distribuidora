@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  icon        String
+  description String
+  products    Product[]
+}
+
+model Product {
+  id              String         @id @default(cuid())
+  slug            String         @unique
+  name            String
+  categoryId      String
+  category        Category       @relation(fields: [categoryId], references: [id])
+  description     String
+  longDescription String
+  /// JSON array of strings
+  features        String         @default("[]")
+  price           Int
+  oldPrice        Int?
+  discount        Int?
+  sku             String?
+  barcode         String?
+  weightGrams     Int?
+  /// Free text, e.g. "30x20x10 cm"
+  dimensions      String?
+  stockAvailable  Int            @default(0)
+  stockReserved   Int            @default(0)
+  unit            String
+  featured        Boolean        @default(false)
+  bestSeller      Boolean        @default(false)
+  isNew           Boolean        @default(false)
+  rating          Float          @default(0)
+  minWholesaleQty Int?
+  wholesalePrice  Int?
+  metaTitle       String?
+  metaDescription String?
+  active          Boolean        @default(true)
+  /// Lucide icon name used as visual fallback
+  icon            String         @default("Package")
+  images          ProductImage[]
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  url       String
+  alt       String?
+  sortOrder Int      @default(0)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  nombre    String
+  email     String
+  telefono  String?
+  asunto    String?
+  mensaje   String?
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  confirmed Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  number         Int         @unique
+  channel        String
+  status         String      @default("pendiente")
+  tipoCliente    String?
+  nombre         String
+  razonSocial    String?
+  dniCuit        String?
+  requiereFactura Boolean   @default(false)
+  telefono       String
+  email          String?
+  direccion      String
+  localidad      String
+  provincia      String
+  notas          String?
+  total          Int
+  items          OrderItem[]
+  createdAt      DateTime    @default(now())
+
+  @@index([channel])
+  @@index([status])
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  orderId   String
+  order     Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String?
+  name      String
+  unit      String
+  price     Int
+  quantity  Int
+}
