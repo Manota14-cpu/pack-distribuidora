@@ -40,7 +40,7 @@ test.describe("Navigation", () => {
   test("logo links to homepage", async ({ page }) => {
     await page.goto("/productos");
     await page.waitForLoadState("networkidle");
-    await page.locator("header").getByRole("link", { name: /Pack Distribuidora/ }).click();
+    await page.locator("header").getByRole("link", { name: /Pack Distribuidora/i }).click();
     await expect(page).toHaveURL("/");
   });
 });
@@ -191,6 +191,6 @@ test.describe("SEO & Accessibility", () => {
   test("JSON-LD is present on product page", async ({ page }) => {
     await page.goto("/productos/vaso-plastico-500cc-x50");
     const jsonLd = page.locator('script[type="application/ld+json"]');
-    await expect(jsonLd).toBeAttached();
+    await expect(jsonLd.first()).toBeAttached();
   });
 });
