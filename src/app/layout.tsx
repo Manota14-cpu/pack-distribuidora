@@ -69,7 +69,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const categories = await getCategories();
   return (
     <html lang="es" className="h-full antialiased" data-scroll-behavior="smooth">
