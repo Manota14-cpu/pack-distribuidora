@@ -3,9 +3,9 @@ import type { LucideIcon } from "lucide-react";
 
 export const STORE_INFO = {
   name: "Pack Distribuidora",
-  whatsapp: "https://wa.me/543492000000",
-  whatsappDisplay: "+54 3492 000-000",
-  phone: "+54 3492-000-000",
+  whatsapp: "https://wa.me/543492518311",
+  whatsappDisplay: "+54 3492 51-8311",
+  phone: "+54 3492 51-8311",
   email: "contacto@packdistribuidora.com.ar",
   location: "Rafaela, Santa Fe",
   country: "Argentina",

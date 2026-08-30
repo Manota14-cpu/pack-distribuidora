@@ -17,7 +17,7 @@ export interface WhatsappLineItem {
   quantity: number;
 }
 
-export const WHATSAPP_NUMBER = "543492301333";
+export const WHATSAPP_NUMBER = "543492518311";
 
 export function buildWhatsAppMessage(
   data: CheckoutFormData,

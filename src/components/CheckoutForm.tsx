@@ -248,7 +248,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="co-tel" className="block text-sm font-semibold mb-1.5">Teléfono *</label>
-                      <input type="tel" id="co-tel" name="telefono" required value={form.telefono} onChange={onChange} placeholder="3492-000000" className={INPUT} />
+                      <input type="tel" id="co-tel" name="telefono" required value={form.telefono} onChange={onChange} placeholder="3492-518311" className={INPUT} />
                     </div>
                     <div>
                       <label htmlFor="co-email" className="block text-sm font-semibold mb-1.5">Email</label>

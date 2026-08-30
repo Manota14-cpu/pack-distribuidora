@@ -16,7 +16,7 @@ const JSON_LD = {
   url: "https://packdistribuidora.com.ar",
   logo: "https://packdistribuidora.com.ar/logos/pack.png",
   image: "https://packdistribuidora.com.ar/logos/pack.png",
-  sameAs: ["https://wa.me/543492301333"],
+  sameAs: ["https://wa.me/543492518311"],
   priceRange: "$$",
   areaServed: "AR",
   address: {

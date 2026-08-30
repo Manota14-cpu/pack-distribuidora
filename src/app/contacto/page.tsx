@@ -130,7 +130,7 @@ export default function ContactoPage() {
                     type="tel"
                     value={telefono}
                     onChange={(e) => setTelefono(e.target.value)}
-                    placeholder="3492-000000"
+                    placeholder="3492-518311"
                     className="w-full rounded-xl border border-[var(--gray)] bg-[var(--gray-light)] px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--green-primary)] focus:ring-2 focus:ring-[var(--green-primary)]/20 transition"
                   />
                 </div>
@@ -214,7 +214,7 @@ export default function ContactoPage() {
               </div>
               <div className="flex items-start gap-3">
                 <Phone size={18} className="mt-0.5 shrink-0 text-[var(--green-primary)]" />
-                <p className="text-sm font-medium">+54 3492-000-000</p>
+                <p className="text-sm font-medium">+54 3492 51-8311</p>
               </div>
               <div className="flex items-start gap-3">
                 <Mail size={18} className="mt-0.5 shrink-0 text-[var(--green-primary)]" />
@@ -233,7 +233,7 @@ export default function ContactoPage() {
               ¿Necesitás una respuesta rápida? Escribinos por WhatsApp.
             </p>
             <a
-              href="https://wa.me/543492000000"
+              href="https://wa.me/543492518311"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3 hover:bg-white/90 transition"
