@@ -1,11 +1,18 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import Image from "next/image";
 import { getProductBySlug } from "@/lib/data/products";
 import ProductVisual from "./ProductVisual";
+
+const OFFER_IMAGE = "/imagenes/pack-gastronomico.png";
 
 export default async function FeaturedOffer() {
   const pack = await getProductBySlug("pack-gastronomico");
   if (!pack) return null;
+
+  const hasImage = existsSync(path.join(process.cwd(), "public", OFFER_IMAGE));
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-4">
@@ -28,17 +35,29 @@ export default async function FeaturedOffer() {
             Comprar pack <ArrowRight size={16} />
           </Link>
         </div>
-        <div className="p-8 md:p-10 grid grid-cols-2 gap-4">
-          {["Disc", "CupSoda", "Utensils", "StickyNote"].map((icon) => (
-            <ProductVisual
-              key={icon}
-              icon={icon}
-              className="aspect-square bg-white/95"
-              iconClassName="h-10 w-10"
-              iconColor="text-[var(--green-primary)]"
+        {hasImage ? (
+          <div className="relative h-full min-h-64 md:min-h-full">
+            <Image
+              src={OFFER_IMAGE}
+              alt="Pack gastronómico completo: platos, vasos, cubiertos y servilletas"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
             />
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="p-8 md:p-10 grid grid-cols-2 gap-4">
+            {["Disc", "CupSoda", "Utensils", "StickyNote"].map((icon) => (
+              <ProductVisual
+                key={icon}
+                icon={icon}
+                className="aspect-square bg-white/95"
+                iconClassName="h-10 w-10"
+                iconColor="text-[var(--green-primary)]"
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
