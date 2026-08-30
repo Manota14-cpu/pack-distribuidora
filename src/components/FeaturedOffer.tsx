@@ -36,13 +36,14 @@ export default async function FeaturedOffer() {
           </Link>
         </div>
         {hasImage ? (
-          <div className="relative h-full min-h-64 md:min-h-full">
+          <div className="relative aspect-square w-full bg-white/95">
             <Image
               src={OFFER_IMAGE}
               alt="Pack gastronómico completo: platos, vasos, cubiertos y servilletas"
               fill
+              priority
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
         ) : (
