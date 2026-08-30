@@ -13,7 +13,7 @@ export default function Logo({
   return (
     <Link href="/" className={`flex items-center shrink-0 ${className}`} aria-label="PACK Distribuidora — inicio">
       <Image
-        src="/logos/LOGOPACKDISTRIBUIDORA.png"
+        src="/logos/pack.png"
         alt=""
         width={64}
         height={64}

@@ -82,7 +82,7 @@ export default async function ProductDetailPage({
     },
     image: product.images?.[0]?.url
       ? `https://packdistribuidora.com.ar${product.images[0].url.startsWith("/") ? "" : "/"}${product.images[0].url}`
-      : "https://packdistribuidora.com.ar/logos/LOGOPACKDISTRIBUIDORA.png",
+      : "https://packdistribuidora.com.ar/logos/pack.png",
     offers: {
       "@type": "Offer",
       url: `https://packdistribuidora.com.ar/productos/${product.slug}`,

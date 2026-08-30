@@ -14,8 +14,8 @@ const JSON_LD = {
   description:
     "Vasos, platos, cubiertos, envases, bolsas y film descartables para hogar, comercio y eventos.",
   url: "https://packdistribuidora.com.ar",
-  logo: "https://packdistribuidora.com.ar/logos/LOGOPACKDISTRIBUIDORA.png",
-  image: "https://packdistribuidora.com.ar/logos/LOGOPACKDISTRIBUIDORA.png",
+  logo: "https://packdistribuidora.com.ar/logos/pack.png",
+  image: "https://packdistribuidora.com.ar/logos/pack.png",
   sameAs: ["https://wa.me/543492301333"],
   priceRange: "$$",
   areaServed: "AR",

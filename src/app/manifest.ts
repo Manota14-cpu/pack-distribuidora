@@ -17,7 +17,7 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/svg+xml",
       },
       {
-        src: "/logos/LOGOPACKDISTRIBUIDORA.png",
+        src: "/logos/pack.png",
         sizes: "512x512",
         type: "image/png",
       },
