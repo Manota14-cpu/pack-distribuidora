@@ -6,7 +6,7 @@ const BENEFITS = [
   "Precios diferenciales por volumen",
   "Asesoramiento comercial dedicado",
   "Reposición programada de stock",
-  "Facturación A para tu negocio",
+  "Atención dedicada para tu negocio",
 ];
 
 export default function Wholesale() {

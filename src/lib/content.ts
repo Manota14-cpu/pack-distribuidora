@@ -6,13 +6,13 @@ export const STORE_INFO = {
   whatsapp: "https://wa.me/543492518311",
   whatsappDisplay: "+54 3492 51-8311",
   phone: "+54 3492 51-8311",
-  email: "contacto@packdistribuidora.com.ar",
+  email: "packdistribuidora@gmail.com",
   location: "Rafaela, Santa Fe",
   country: "Argentina",
   hours: {
-    weekdays: "Lunes a viernes: 8:00 – 18:00",
-    saturday: "Sábados: 9:00 – 13:00",
-    closed: "Domingos y feriados: cerrado",
+    weekdays: "Lunes a viernes: 8:30 – 12:00 y 15:30 – 19:30",
+    saturday: "Sábados: 9:00 – 12:00 y 16:00 – 20:00",
+    sunday: "Domingos: 10:00 – 12:00",
   },
 };
 
@@ -135,12 +135,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "¿Puedo retirar mi pedido en el local?",
     answer:
-      "Sí, el retiro es sin cargo en nuestro local de Rafaela, Santa Fe, de lunes a viernes de 8 a 18 y sábados de 9 a 13.",
+      "Sí, el retiro es sin cargo en nuestro local de Rafaela, Santa Fe, de lunes a viernes de 8:30 a 12 y de 15:30 a 19:30, sábados de 9 a 12 y de 16 a 20, y domingos de 10 a 12.",
   },
   {
     question: "¿Cómo hago para ser mayorista?",
     answer:
-      "Escribinos por WhatsApp o por el formulario de contacto. Coordinamos precios por volumen, reposición programada de stock y facturación A.",
+      "Escribinos por WhatsApp o por el formulario de contacto. Coordinamos precios por volumen y reposición programada de stock.",
   },
 ];
 

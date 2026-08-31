@@ -8,15 +8,15 @@ export default function Logo({
   compact?: boolean;
   className?: string;
 }) {
-  const size = compact ? "h-14 w-14" : "h-16 w-16";
+  const size = compact ? "h-20 w-20" : "h-24 w-24";
 
   return (
     <Link href="/" className={`flex items-center shrink-0 ${className}`} aria-label="PACK Distribuidora — inicio">
       <Image
         src="/logos/pack.png"
         alt=""
-        width={64}
-        height={64}
+        width={96}
+        height={96}
         priority
         className={`shrink-0 ${size}`}
       />

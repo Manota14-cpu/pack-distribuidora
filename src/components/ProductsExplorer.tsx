@@ -106,7 +106,7 @@ export default function ProductsExplorer({
       </div>
 
       <div>
-        <h3 className="text-sm font-semibold mb-3">Venta mayorista</h3>
+        <h3 className="text-sm font-semibold mb-3">Packs Mayorista</h3>
         <label className="flex items-center gap-2.5 text-sm cursor-pointer">
           <input
             type="checkbox"
@@ -114,7 +114,7 @@ export default function ProductsExplorer({
             onChange={(e) => setWholesaleOnly(e.target.checked)}
             className="h-4 w-4 rounded accent-[var(--green-primary)]"
           />
-          Solo packs mayoristas
+          Packs mayoristas
         </label>
       </div>
 

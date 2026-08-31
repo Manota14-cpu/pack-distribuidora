@@ -242,7 +242,7 @@ export default async function ProductDetailPage({
           <p className="text-sm text-[var(--text-muted)] leading-relaxed">
             Realizamos envíos a todo el país. Los tiempos de entrega varían según la
             localidad. Para compras mayoristas, coordinamos logística especial y
-            facturación A. Consultanos por WhatsApp para conocer el costo y tiempo
+            facturación. Consultanos por WhatsApp para conocer el costo y tiempo
             estimado de envío a tu domicilio.
           </p>
         </div>

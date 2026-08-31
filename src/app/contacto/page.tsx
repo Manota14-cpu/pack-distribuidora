@@ -218,7 +218,7 @@ export default function ContactoPage() {
               </div>
               <div className="flex items-start gap-3">
                 <Mail size={18} className="mt-0.5 shrink-0 text-[var(--green-primary)]" />
-                <p className="text-sm font-medium">contacto@packdistribuidora.com.ar</p>
+                <p className="text-sm font-medium">packdistribuidora@gmail.com</p>
               </div>
             </div>
           </div>

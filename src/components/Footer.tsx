@@ -16,7 +16,9 @@ export default async function Footer() {
           </p>
           <div className="mt-5 flex items-center gap-3">
             <a
-              href="#"
+              href="https://instagram.com/packdistribuidora.raf"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white hover:text-[var(--green-primary)] transition-colors"
             >
@@ -76,7 +78,7 @@ export default async function Footer() {
               <MessageCircle size={15} className="text-white/70" /> WhatsApp
             </li>
             <li className="flex items-center gap-2">
-              <Mail size={15} className="text-white/70" /> contacto@packdistribuidora.com.ar
+              <Mail size={15} className="text-white/70" /> packdistribuidora@gmail.com
             </li>
             <li className="flex items-center gap-2">
               <MapPin size={15} className="text-white/70" /> Rafaela, Santa Fe
