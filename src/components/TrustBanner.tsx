@@ -1,9 +1,9 @@
-import { Users, Package, ShieldCheck } from "lucide-react";
+import { Users, Truck, PackageCheck } from "lucide-react";
 
 const STATS = [
-  { icon: Users, value: "+1000", label: "Clientes felices" },
-  { icon: Package, value: "+500", label: "Productos disponibles" },
-  { icon: ShieldCheck, value: "100%", label: "Compra segura — pago protegido" },
+  { icon: Truck, value: "Todo el país", label: "Envíos a todo el país" },
+  { icon: PackageCheck, value: "Stock", label: "Stock permanente" },
+  { icon: Users, value: "Mayorista", label: "Atención mayorista y minorista" },
 ];
 
 export default function TrustBanner() {

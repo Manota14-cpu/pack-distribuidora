@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MessageCircle, Mail, MapPin, Camera, Share2 } from "lucide-react";
+import { MessageCircle, Mail, MapPin, Camera } from "lucide-react";
 import { getCategories } from "@/lib/data/products";
 import { HELP_LINKS } from "@/lib/content";
 import Logo from "./Logo";
@@ -20,16 +20,9 @@ export default async function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white hover:text-[var(--green-primary)] transition-colors"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white hover:text-[var(--green-primary)] hover:scale-105 transition-all"
             >
-              <Camera size={16} />
-            </a>
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white hover:text-[var(--green-primary)] transition-colors"
-            >
-              <Share2 size={16} />
+              <Camera size={18} />
             </a>
           </div>
         </div>

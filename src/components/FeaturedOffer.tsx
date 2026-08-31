@@ -38,7 +38,7 @@ export default async function FeaturedOffer() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
           {packs.map((p) => (
-            <ProductCard key={p.id} product={p} />
+            <ProductCard key={p.id} product={p} onGreen />
           ))}
         </div>
       </div>
