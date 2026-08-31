@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { ArrowRight, Leaf } from "lucide-react";
 import { TRUST_POINTS } from "@/lib/content";
+import Aurora from "./Aurora";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[var(--green-light)]">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 30%, #ffffff 0 8px, transparent 9px), radial-gradient(circle at 80% 20%, #ffffff 0 14px, transparent 15px), radial-gradient(circle at 70% 80%, #ffffff 0 10px, transparent 11px), radial-gradient(circle at 30% 70%, #ffffff 0 6px, transparent 7px), radial-gradient(circle at 90% 60%, #ffffff 0 9px, transparent 10px), radial-gradient(circle at 10% 85%, #ffffff 0 12px, transparent 13px)",
-          backgroundSize: "340px 340px, 420px 420px, 380px 380px, 300px 300px, 360px 360px, 320px 320px",
-        }}
-      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Aurora
+          colorStops={["#0a5230", "#ffffff", "#0e653b"]}
+          blend={0.6}
+          amplitude={1.0}
+          speed={1}
+          lightMode
+        />
+      </div>
       <div className="relative mx-auto max-w-7xl px-6 pt-14 pb-16 md:pt-20 md:pb-24 flex flex-col items-center text-center">
         <div className="animate-fade-up max-w-2xl">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 border border-white/20 px-3 py-1.5 text-xs font-semibold text-[var(--green-primary)] mb-6">
