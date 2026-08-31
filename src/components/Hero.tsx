@@ -8,7 +8,7 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-[var(--green-light)]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Aurora
-          colorStops={["#0a5230", "#ffffff", "#0e653b"]}
+          colorStops={["#ffffff", "#0e653b", "#ffffff"]}
           blend={0.6}
           amplitude={1.0}
           speed={1}
