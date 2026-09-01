@@ -29,7 +29,7 @@ export default function ContactoLoading() {
         </div>
         <div className="flex flex-col gap-5">
           <div className="rounded-2xl border border-[var(--gray)] bg-[var(--white)] p-6 h-48" />
-          <div className="rounded-2xl bg-[var(--green-deep)] p-6 h-40" />
+          <div className="rounded-2xl bg-[var(--green-primary)] p-6 h-40" />
           <div className="rounded-2xl border border-[var(--gray)] bg-[var(--white)] p-6 h-40" />
         </div>
       </div>

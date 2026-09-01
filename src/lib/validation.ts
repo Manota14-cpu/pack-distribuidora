@@ -12,6 +12,22 @@ export const newsletterSchema = z.object({
   email: z.string().trim().email("Email inválido").max(200),
 });
 
+// Registro mayorista (formulario en /preguntas-frecuentes, envío directo por WhatsApp)
+export const wholesaleRegistrationSchema = z.object({
+  nombre: z.string().trim().min(3, "Ingresá tu nombre completo o razón social (mínimo 3 caracteres)"),
+  cuit: z
+    .string()
+    .trim()
+    .transform((v) => v.replace(/-/g, ""))
+    .pipe(z.string().regex(/^\d{11}$/, "El CUIT debe tener exactamente 11 dígitos numéricos")),
+  telefono: z
+    .string()
+    .trim()
+    .transform((v) => v.replace(/\D/g, ""))
+    .pipe(z.string().min(8, "Ingresá un teléfono válido (mínimo 8 dígitos)")),
+  email: z.string().trim().email("Ingresá un email válido"),
+});
+
 export const checkoutOrderSchema = z.object({
   tipoCliente: z.enum(["minorista", "mayorista"]),
   nombre: z.string().trim().min(2).max(120),

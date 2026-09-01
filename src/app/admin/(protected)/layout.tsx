@@ -20,7 +20,7 @@ export default async function AdminPanelLayout({ children }: { children: React.R
       <div className="mx-auto max-w-6xl px-6 py-8">
         <header className="flex items-center justify-between gap-4 flex-wrap mb-8">
           <div className="flex items-center gap-6">
-            <Link href="/admin" className="font-display text-xl font-bold text-[var(--green-dark)]">
+            <Link href="/admin" className="font-display text-xl font-bold text-[var(--green-primary)]">
               Pack <span className="text-[var(--green-primary)]">Distribuidora</span> admin
             </Link>
             <nav className="flex items-center gap-3 text-sm">

@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { getFeaturedProducts } from "@/lib/data/products";
 import ProductCard from "./ProductCard";
 import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
 
 export default async function FeaturedProducts() {
   const featured = await getFeaturedProducts(8);
@@ -22,11 +23,11 @@ export default async function FeaturedProducts() {
           Ver todos <ArrowRight size={15} />
         </Link>
       </div>
-      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+      <Reveal className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
         {featured.map((p) => (
           <ProductCard key={p.id} product={p} />
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

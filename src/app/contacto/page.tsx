@@ -2,6 +2,14 @@
 
 import { useState, type FormEvent } from "react";
 import { Mail, MessageCircle, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
+import { STORE_INFO } from "@/lib/content";
+
+const HOURS_ROWS = [STORE_INFO.hours.weekdays, STORE_INFO.hours.saturday, STORE_INFO.hours.sunday].map(
+  (line) => {
+    const [day, time] = line.split(": ");
+    return { day, time };
+  }
+);
 
 const ASUNTO_OPTIONS = [
   { value: "consulta-general", label: "Consulta general" },
@@ -208,23 +216,36 @@ export default function ContactoPage() {
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="mt-0.5 shrink-0 text-[var(--green-primary)]" />
                 <div>
-                  <p className="text-sm font-medium">Rafaela, Santa Fe</p>
-                  <p className="text-xs text-[var(--text-muted)]">Argentina</p>
+                  <p className="text-sm font-medium">{STORE_INFO.location}</p>
+                  <p className="text-xs text-[var(--text-muted)]">{STORE_INFO.country}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Phone size={18} className="mt-0.5 shrink-0 text-[var(--green-primary)]" />
-                <p className="text-sm font-medium">+54 3492 51-8311</p>
+                <p className="text-sm font-medium">{STORE_INFO.phone}</p>
               </div>
               <div className="flex items-start gap-3">
                 <Mail size={18} className="mt-0.5 shrink-0 text-[var(--green-primary)]" />
-                <p className="text-sm font-medium">packdistribuidora@gmail.com</p>
+                <p className="text-sm font-medium">{STORE_INFO.email}</p>
               </div>
             </div>
           </div>
 
+          {/* Mapa */}
+          <div className="rounded-2xl border border-[var(--gray)] bg-[var(--white)] p-2 overflow-hidden">
+            <iframe
+              title={`Ubicación de ${STORE_INFO.name}`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(
+                `${STORE_INFO.name}, ${STORE_INFO.location}, ${STORE_INFO.country}`
+              )}&output=embed`}
+              className="w-full h-56 rounded-xl border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
           {/* WhatsApp */}
-          <div className="rounded-2xl bg-[var(--green-deep)] p-6 text-white">
+          <div className="rounded-2xl bg-[var(--green-primary)] p-6 text-white">
             <div className="flex items-center gap-2.5 mb-2">
               <MessageCircle size={20} />
               <h3 className="font-display text-lg font-bold">WhatsApp</h3>
@@ -233,10 +254,10 @@ export default function ContactoPage() {
               ¿Necesitás una respuesta rápida? Escribinos por WhatsApp.
             </p>
             <a
-              href="https://wa.me/543492518311"
+              href={STORE_INFO.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3 hover:bg-white/90 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] transition-all"
             >
               <MessageCircle size={16} />
               Abrir WhatsApp
@@ -249,18 +270,12 @@ export default function ContactoPage() {
               Horarios de atención
             </h3>
             <div className="mt-4 flex flex-col gap-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-[var(--text-muted)]">Lunes a viernes</span>
-                <span className="font-medium">8:00 – 18:00</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[var(--text-muted)]">Sábados</span>
-                <span className="font-medium">9:00 – 13:00</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[var(--text-muted)]">Domingos y feriados</span>
-                <span className="font-medium text-[var(--text-muted)]">Cerrado</span>
-              </div>
+              {HOURS_ROWS.map(({ day, time }) => (
+                <div key={day} className="flex justify-between gap-4">
+                  <span className="text-[var(--text-muted)]">{day}</span>
+                  <span className="font-medium text-right">{time}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

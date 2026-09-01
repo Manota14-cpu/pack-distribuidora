@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getProducts } from "@/lib/data/products";
 import ProductCard from "./ProductCard";
+import Reveal from "./Reveal";
 
 export default async function FeaturedOffer() {
   const allProducts = await getProducts({ onlyActive: true });
@@ -36,11 +37,11 @@ export default async function FeaturedOffer() {
             Ver todas las ofertas <ArrowRight size={15} />
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+        <Reveal className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
           {packs.map((p) => (
             <ProductCard key={p.id} product={p} onGreen />
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

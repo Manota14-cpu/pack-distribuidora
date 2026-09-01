@@ -4,14 +4,14 @@ import { TRUST_POINTS } from "@/lib/content";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[var(--green-light)]">
+    <section className="relative overflow-hidden bg-[var(--green-primary)]">
       <div className="mx-auto max-w-7xl px-6 pt-14 pb-16 md:pt-20 md:pb-24 flex flex-col items-center text-center">
         <div className="animate-fade-up max-w-2xl">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 border border-white/20 px-3 py-1.5 text-xs font-semibold text-[var(--green-primary)] mb-6">
             <Leaf size={13} className="text-[var(--green-primary)]" />
             Minorista y mayorista
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold leading-[1.05] text-white">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold leading-[1.05] tracking-tight text-balance text-white">
             Soluciones descartables,
             <br />
             siempre a mano.

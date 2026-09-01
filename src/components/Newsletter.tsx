@@ -34,7 +34,7 @@ export default function Newsletter() {
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-      <div className="rounded-3xl bg-[var(--green-light)] px-6 py-12 md:px-16 md:py-14 text-center flex flex-col items-center">
+      <div className="rounded-3xl bg-[var(--green-primary)] px-6 py-12 md:px-16 md:py-14 text-center flex flex-col items-center">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 mb-4">
           <Mail size={20} className="text-white" />
         </div>
@@ -67,7 +67,7 @@ export default function Newsletter() {
           <button
             type="submit"
             disabled={sending}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3 hover:bg-white/90 disabled:opacity-60 transition-colors"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] disabled:opacity-60 disabled:translate-y-0 disabled:shadow-none transition-all"
           >
             {sent ? "¡Listo!" : sending ? "Suscribiendo…" : "Suscribirme"}
             {!sent && !sending && <Send size={15} />}

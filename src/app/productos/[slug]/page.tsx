@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { Star, Truck, ShieldCheck, RotateCcw, ChevronRight } from "lucide-react";
+import { Truck, ShieldCheck, RotateCcw, ChevronRight } from "lucide-react";
 import {
   getProductBySlug,
   getRelatedProducts,
@@ -163,20 +163,6 @@ export default async function ProductDetailPage({
           </h1>
           <p className="text-sm text-[var(--text-muted)] mt-1">{product.unit}</p>
 
-          <div className="flex items-center gap-1.5 mt-3 text-[var(--green-primary)]">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star
-                key={i}
-                size={15}
-                fill={i < Math.round(product.rating) ? "currentColor" : "none"}
-                strokeWidth={1.5}
-              />
-            ))}
-            <span className="text-sm text-[var(--text-muted)] ml-1">
-              {product.rating.toFixed(1)} de 5
-            </span>
-          </div>
-
           <div className="flex items-baseline gap-3 mt-5">
             <span className="font-display text-3xl font-bold">
               ${product.price.toLocaleString("es-AR")}
@@ -187,7 +173,7 @@ export default async function ProductDetailPage({
               </span>
             )}
             {product.discount && (
-              <span className="rounded-full bg-[var(--green-deep)] text-white text-xs font-bold px-2.5 py-1">
+              <span className="rounded-full bg-[var(--green-primary)] text-white text-xs font-bold px-2.5 py-1">
                 -{product.discount}%
               </span>
             )}

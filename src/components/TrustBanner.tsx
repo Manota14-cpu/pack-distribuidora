@@ -12,7 +12,7 @@ export default function TrustBanner() {
       <div className="mx-auto max-w-7xl px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
         {STATS.map(({ icon: Icon, value, label }) => (
           <div key={label} className="flex items-center gap-4 justify-center sm:justify-start">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--green-light)]">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--green-primary)]">
               <Icon size={22} className="text-white" />
             </div>
             <div>

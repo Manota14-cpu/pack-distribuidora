@@ -22,6 +22,7 @@ const NAV_LINKS = [
   { href: "/productos", label: "Productos" },
   { href: "/productos?ofertas=1", label: "Ofertas" },
   { href: "/nosotros", label: "Nosotros" },
+  { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
   { href: "/contacto", label: "Contacto" },
 ];
 
@@ -95,7 +96,7 @@ export default function Header({ categories }: { categories: Category[] }) {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-[var(--green-header)]">
+      <header className="sticky top-0 z-40 bg-[var(--green-primary)]">
         {/* Top info bar — animated */}
         <TopBar />
 

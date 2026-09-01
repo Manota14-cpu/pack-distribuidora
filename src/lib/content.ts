@@ -145,10 +145,66 @@ export const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const HELP_LINKS = [
-  { href: "/informacion-de-compra#faq", label: "Preguntas frecuentes" },
+  { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
   { href: "/informacion-de-compra#envios", label: "Envíos" },
   { href: "/informacion-de-compra#devoluciones", label: "Cambios y devoluciones" },
   { href: "/informacion-de-compra#pagos", label: "Formas de pago" },
+];
+
+// ---- Preguntas frecuentes (envíos + registro mayorista) ----
+
+export interface FaqMayoristaItem {
+  id: string;
+  question: string;
+  answer: string;
+  /** Solo la pregunta de requisitos mayorista usa este render especial. */
+  special?: "mayorista";
+}
+
+export const FAQ_MAYORISTA_ITEMS: FaqMayoristaItem[] = [
+  {
+    id: "envio-otra-provincia",
+    question: "¿Puedo adquirir sus productos si vivo en otra provincia?",
+    answer:
+      "Sí. Realizamos envíos a todo el país. No importa en qué provincia estés: coordinamos el despacho de tu pedido por transporte y te enviamos el número de seguimiento apenas sale del depósito.",
+  },
+  {
+    id: "costo-envio",
+    question: "¿Qué costo tiene el envío?",
+    answer: "En compras iguales o superiores a $50.000 el envío es sin cargo a todo el país.",
+  },
+  {
+    id: "costo-envio-menor",
+    question: "¿Qué costo tiene el envío si la compra es menor a $50.000?",
+    answer:
+      "En compras menores a $50.000 el costo del envío es de $8.500 dentro de la provincia de Santa Fe y $12.000 al resto del país. El monto exacto se calcula al finalizar la compra según tu código postal.",
+  },
+  {
+    id: "transporte",
+    question: "¿Cuál es el transporte utilizado para el envío?",
+    answer:
+      "Trabajamos con Andreani y Correo Argentino para envíos a domicilio y a sucursal. Para pedidos mayoristas o de gran volumen despachamos por transporte de cargas, y podés indicarnos el de tu preferencia.",
+  },
+  {
+    id: "formas-plazos",
+    question: "¿Cuáles son las formas de envío y plazos de entrega?",
+    answer:
+      "Contamos con tres modalidades: Envío a domicilio (llega a la dirección que indiques, plazo estimado de 3 a 5 días hábiles), envío a sucursal (retirás en la sucursal del correo más cercana, plazo estimado de 2 a 4 días hábiles) y retiro en local (sin costo, en nuestro local de Rafaela, Santa Fe, disponible dentro de las 24 hs hábiles de confirmado el pago). Los plazos se cuentan desde la acreditación del pago y no incluyen sábados, domingos ni feriados. En temporada alta pueden extenderse uno o dos días.",
+  },
+  {
+    id: "requisitos-mayorista",
+    question: "¿Cuáles son los requisitos para compra mayorista?",
+    answer:
+      "Contar con CUIT activo y condición fiscal de Responsable Inscripto o Monotributista. Compra mínima inicial de $150.000. Compra mínima en pedidos siguientes de $80.000. Registrate completando el formulario para que te contactemos.",
+    special: "mayorista",
+  },
+];
+
+export const MAYORISTA_REQUISITOS = [
+  "Contar con CUIT activo y condición fiscal de Responsable Inscripto o Monotributista.",
+  "Compra mínima inicial de $150.000.",
+  "Compra mínima en pedidos siguientes de $80.000.",
+  "Registrarte completando el formulario que aparece más abajo.",
 ];
 
 export const COMPANY_HISTORY =

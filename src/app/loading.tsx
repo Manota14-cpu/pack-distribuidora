@@ -1,7 +1,7 @@
 export default function HomeLoading() {
   return (
     <div className="animate-pulse">
-      <section className="relative bg-[var(--green-light)]">
+      <section className="relative bg-[var(--green-primary)]">
         <div className="mx-auto max-w-7xl px-6 pt-14 pb-16 md:pt-20 md:pb-24 grid md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-4">
             <div className="h-6 w-36 rounded-full bg-[var(--white)]/50" />

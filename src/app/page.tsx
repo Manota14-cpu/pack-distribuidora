@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import PromoCarousel from "@/components/PromoCarousel";
 import TrustBanner from "@/components/TrustBanner";
 import Categories from "@/components/Categories";
 import Wholesale from "@/components/Wholesale";
@@ -41,6 +42,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
+      <PromoCarousel />
       <Hero />
       <TrustBanner />
       <Categories />

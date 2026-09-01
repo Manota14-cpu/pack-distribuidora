@@ -34,7 +34,7 @@ export default function NosotrosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[var(--green-light)]">
+      <section className="bg-[var(--green-primary)]">
         <div className="mx-auto max-w-7xl px-6 pt-14 pb-12 md:pt-20 md:pb-16 text-center">
           <span className="text-xs font-bold uppercase tracking-[0.14em] text-white/80">
             Quiénes somos
@@ -50,7 +50,7 @@ export default function NosotrosPage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/productos"
-              className="inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3.5 hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3.5 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] transition-all"
             >
               Ver productos <ArrowRight size={16} />
             </Link>
@@ -123,7 +123,7 @@ export default function NosotrosPage() {
             className="absolute inset-0 opacity-40"
             style={{
               backgroundImage:
-                "radial-gradient(circle at 80% 20%, var(--green-lime) 0%, transparent 45%)",
+                "radial-gradient(circle at 80% 20%, var(--green-primary) 0%, transparent 45%)",
             }}
           />
           <div className="relative">
@@ -139,7 +139,7 @@ export default function NosotrosPage() {
                 href={STORE_INFO.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-bold px-6 py-3.5 hover:bg-white/90 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-bold px-6 py-3.5 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] transition-all"
               >
                 <MessageCircle size={16} /> Chatear por WhatsApp
               </a>

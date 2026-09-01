@@ -165,7 +165,7 @@ export default function InfoCompraPage() {
             <ul className="mt-4 border-t border-[var(--gray)] pt-4 flex flex-col gap-2">
               {SHIPPING_INFO.notes.map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm text-[var(--text-muted)]">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--green-lime)] shrink-0" />
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--green-primary)] shrink-0" />
                   {item}
                 </li>
               ))}
@@ -235,7 +235,7 @@ export default function InfoCompraPage() {
             </ul>
           </div>
 
-          <div className="rounded-2xl bg-[var(--green-deep)] p-6 text-white">
+          <div className="rounded-2xl bg-[var(--green-primary)] p-6 text-white">
             <div className="flex items-center gap-2.5 mb-2">
               <MessageCircle size={20} />
               <h3 className="font-display text-lg font-bold">¿Alguna otra duda?</h3>
@@ -247,7 +247,7 @@ export default function InfoCompraPage() {
               href={STORE_INFO.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3 hover:bg-white/90 transition"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] transition-all"
             >
               <MessageCircle size={16} /> Abrir WhatsApp
             </a>

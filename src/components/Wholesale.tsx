@@ -11,7 +11,7 @@ const BENEFITS = [
 
 export default function Wholesale() {
   return (
-    <section className="bg-[var(--green-light)] relative overflow-hidden">
+    <section className="bg-[var(--green-primary)] relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
           <span className="text-xs font-bold uppercase tracking-[0.14em] text-white/80">
@@ -34,7 +34,7 @@ export default function Wholesale() {
           </ul>
           <Link
             href="/contacto"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-bold px-6 py-3.5 hover:bg-white/90 transition-all"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-bold px-6 py-3.5 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] transition-all"
           >
             Quiero ser mayorista <ArrowRight size={16} />
           </Link>

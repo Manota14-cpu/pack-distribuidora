@@ -7,7 +7,7 @@ export default function CategoryCard({ category }: { category: Category }) {
   return (
     <Link
       href={`/productos?categoria=${category.slug}`}
-      className="group flex flex-col rounded-2xl border border-[var(--gray)] bg-[var(--white)] p-4 hover:border-[var(--green-primary)] transition-colors"
+      className="group flex flex-col rounded-2xl border border-[var(--gray)] bg-[var(--white)] p-4 transition-all duration-300 hover:border-transparent hover:shadow-[0_16px_34px_-14px_rgba(6,59,24,0.3)] hover:-translate-y-1"
     >
       <ProductVisual
         icon={category.icon}

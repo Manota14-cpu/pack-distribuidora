@@ -29,7 +29,7 @@ export default async function AdminDashboard() {
 
   return (
     <main className="flex flex-col gap-8">
-      <div className="rounded-2xl bg-[var(--green-deep)] p-8 text-white flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="rounded-2xl bg-[var(--green-primary)] p-8 text-white flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="font-display text-2xl font-bold">Panel de administración</h1>
           <p className="text-white/80 text-sm mt-1">

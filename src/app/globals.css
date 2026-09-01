@@ -3,11 +3,6 @@
 :root {
   --green-primary: #0e653b;
   --green-primary-hover: #0a5230;
-  --green-dark: #0e653b;
-  --green-deep: #0e653b;
-  --green-light: #0e653b;
-  --green-lime: #0e653b;
-  --green-header: #0e653b;
   --white: #ffffff;
   --gray-light: #f5f7f3;
   --gray: #e5e8e3;
@@ -21,10 +16,6 @@
 @theme inline {
   --color-green-primary: var(--green-primary);
   --color-green-primary-hover: var(--green-primary-hover);
-  --color-green-dark: var(--green-dark);
-  --color-green-deep: var(--green-deep);
-  --color-green-light: var(--green-light);
-  --color-green-lime: var(--green-lime);
   --color-gray-light: var(--gray-light);
   --color-gray: var(--gray);
   --color-text: var(--text);
@@ -48,8 +39,19 @@ h1, h2, h3, h4, .font-display {
 }
 
 ::selection {
-  background: var(--green-lime);
-  color: var(--green-deep);
+  background: var(--green-primary);
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--green-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Sobre el header/hero verde, un contorno verde queda invisible */
+header :focus-visible {
+  outline-color: var(--white);
 }
 
 /* Perforated / tear-strip divider — signature motif referencing packaging film */

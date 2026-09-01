@@ -12,6 +12,7 @@ import {
 } from "@/lib/products-utils";
 import type { Category, CategorySlug, Product } from "@/lib/types";
 import ProductCard from "./ProductCard";
+import Reveal from "./Reveal";
 
 export default function ProductsExplorer({
   initialProducts,
@@ -175,11 +176,11 @@ export default function ProductsExplorer({
             No encontramos productos con esos filtros. Probá ajustar la búsqueda.
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+          <Reveal className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
             {filtered.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
-          </div>
+          </Reveal>
         )}
       </div>
 

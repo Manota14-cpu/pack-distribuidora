@@ -1,29 +1,5 @@
-import {
-  CupSoda,
-  Disc,
-  Utensils,
-  Package,
-  ShoppingBag,
-  Layers,
-  StickyNote,
-  ChefHat,
-  PartyPopper,
-  SprayCan,
-  type LucideIcon,
-} from "lucide-react";
-
-const ICONS: Record<string, LucideIcon> = {
-  CupSoda,
-  Disc,
-  Utensils,
-  Package,
-  ShoppingBag,
-  Layers,
-  StickyNote,
-  ChefHat,
-  PartyPopper,
-  SprayCan,
-};
+import { Package } from "lucide-react";
+import { ILLUSTRATIONS } from "./illustrations";
 
 export default function ProductVisual({
   icon,
@@ -36,22 +12,28 @@ export default function ProductVisual({
   iconClassName?: string;
   iconColor?: string;
 }) {
-  const Icon = ICONS[icon] ?? Package;
+  const Illustration = ILLUSTRATIONS[icon];
+
   return (
     <div
-      className={`relative flex items-center justify-center overflow-hidden rounded-2xl bg-[var(--green-primary)] ${className}`}
+      className={`relative flex items-center justify-center overflow-hidden rounded-2xl ${className}`}
+      style={{
+        background:
+          "linear-gradient(155deg, color-mix(in srgb, var(--green-primary) 88%, white) 0%, var(--green-primary) 55%, color-mix(in srgb, var(--green-primary) 82%, black) 100%)",
+      }}
     >
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 20%, var(--green-lime) 0%, transparent 45%)",
+            "radial-gradient(circle at 18% 16%, color-mix(in srgb, var(--green-primary) 40%, white) 0%, transparent 45%)",
         }}
       />
-      <Icon
-        className={`relative ${iconColor} ${iconClassName}`}
-        strokeWidth={1.5}
-      />
+      {Illustration ? (
+        <Illustration className={`relative ${iconClassName}`} />
+      ) : (
+        <Package className={`relative ${iconColor} ${iconClassName}`} strokeWidth={1.5} />
+      )}
     </div>
   );
 }
