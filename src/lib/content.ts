@@ -184,13 +184,13 @@ export const FAQ_MAYORISTA_ITEMS: FaqMayoristaItem[] = [
     id: "transporte",
     question: "¿Cuál es el transporte utilizado para el envío?",
     answer:
-      "Dentro de la ciudad de Rafaela y alrededores utilizamos nuestro propio reparto. Al resto del país el transporte es a convenir. El plazo de entrega comienza a contar a partir de la validación del pago y varía de acuerdo con el producto adquirido, el método de pago utilizado y la dirección de entrega. El envío puede tardar entre 2 y 7 días hábiles aproximadamente. Al enviarse tu compra te llega un mail con el número de guía correspondiente. Los días feriados, sábados y/o de paro no son considerados días hábiles para los envíos. Al recibir tu compra asegurate de que el embalaje no esté adulterado ni roto.",
+      "Dentro de la ciudad de Rafaela y alrededores utilizamos nuestro propio reparto. Al resto del país el transporte es a convenir.",
   },
   {
     id: "formas-plazos",
     question: "¿Cuáles son las formas de envío y plazos de entrega?",
     answer:
-      "Contamos con tres modalidades: Envío a domicilio (llega a la dirección que indiques, plazo estimado de 3 a 5 días hábiles), envío a sucursal (retirás en la sucursal del correo más cercana, plazo estimado de 2 a 4 días hábiles) y retiro en local (sin costo, en nuestro local de Rafaela, Santa Fe, disponible dentro de las 24 hs hábiles de confirmado el pago). Los plazos se cuentan desde la acreditación del pago y no incluyen sábados, domingos ni feriados. En temporada alta pueden extenderse uno o dos días.",
+      "El plazo de entrega comienza a contar a partir de la validación del pago y varía de acuerdo con el producto adquirido, el método de pago utilizado y la dirección de entrega. El envío puede tardar entre 2 y 7 días hábiles aproximadamente. Al enviarse tu compra te llega un mail con el número de guía correspondiente. Los días feriados, sábados y/o de paro no son considerados días hábiles para los envíos. Al recibir tu compra asegurate de que el embalaje no esté adulterado ni roto.",
   },
   {
     id: "requisitos-mayorista",
