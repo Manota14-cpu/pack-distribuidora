@@ -166,24 +166,25 @@ export const FAQ_MAYORISTA_ITEMS: FaqMayoristaItem[] = [
     id: "envio-otra-provincia",
     question: "¿Puedo adquirir sus productos si vivo en otra provincia?",
     answer:
-      "Sí. Realizamos envíos a todo el país. No importa en qué provincia estés: coordinamos el despacho de tu pedido por transporte y te enviamos el número de seguimiento apenas sale del depósito.",
+      "Por supuesto que se puede, podés abonar con cualquier medio de pago electrónico (tarjeta de débito, tarjeta de crédito u otros medios electrónicos). Se envía por Transporte Andreani.",
   },
   {
     id: "costo-envio",
     question: "¿Qué costo tiene el envío?",
-    answer: "En compras iguales o superiores a $50.000 el envío es sin cargo a todo el país.",
+    answer:
+      "Dentro de la ciudad de Rafaela y alrededores, es sin cargo, con una compra mínima de $50.000. Envíos al resto del país se realizan por transporte a convenir, que cotiza en el momento de la compra.",
   },
   {
     id: "costo-envio-menor",
     question: "¿Qué costo tiene el envío si la compra es menor a $50.000?",
     answer:
-      "En compras menores a $50.000 el costo del envío es de $8.500 dentro de la provincia de Santa Fe y $12.000 al resto del país. El monto exacto se calcula al finalizar la compra según tu código postal.",
+      "Te podés comunicar con nosotros por estas vías de contacto y te responderemos a la brevedad: mail a packdistribuidora@gmail.com, Instagram @packdistribuidora.raf o WhatsApp al +54 3492 51-8311.",
   },
   {
     id: "transporte",
     question: "¿Cuál es el transporte utilizado para el envío?",
     answer:
-      "Trabajamos con Andreani y Correo Argentino para envíos a domicilio y a sucursal. Para pedidos mayoristas o de gran volumen despachamos por transporte de cargas, y podés indicarnos el de tu preferencia.",
+      "Dentro de la ciudad de Rafaela y alrededores utilizamos nuestro propio reparto. Al resto del país el transporte es a convenir. El plazo de entrega comienza a contar a partir de la validación del pago y varía de acuerdo con el producto adquirido, el método de pago utilizado y la dirección de entrega. El envío puede tardar entre 2 y 7 días hábiles aproximadamente. Al enviarse tu compra te llega un mail con el número de guía correspondiente. Los días feriados, sábados y/o de paro no son considerados días hábiles para los envíos. Al recibir tu compra asegurate de que el embalaje no esté adulterado ni roto.",
   },
   {
     id: "formas-plazos",
