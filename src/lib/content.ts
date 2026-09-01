@@ -3,10 +3,10 @@ import type { LucideIcon } from "lucide-react";
 
 export const STORE_INFO = {
   name: "Pack Distribuidora",
-  whatsapp: "https://wa.me/543492518311",
+  whatsapp: "https://wa.me/5493492518311",
   whatsappDisplay: "+54 3492 51-8311",
   phone: "+54 3492 51-8311",
-  email: "packdistribuidora@gmail.com",
+  email: "packdistribuidora1@gmail.com",
   instagram: "https://instagram.com/packdistribuidora.raf",
   instagramDisplay: "@packdistribuidora.raf",
   location: "Rafaela, Santa Fe",
@@ -180,7 +180,7 @@ export const FAQ_MAYORISTA_ITEMS: FaqMayoristaItem[] = [
     id: "costo-envio-menor",
     question: "¿Qué costo tiene el envío si la compra es menor a $50.000?",
     answer:
-      "Te podés comunicar con nosotros por mail a packdistribuidora@gmail.com, por Instagram @packdistribuidora.raf o por WhatsApp al +54 3492 51-8311, y te responderemos a la brevedad.",
+      "Te podés comunicar con nosotros por mail a packdistribuidora1@gmail.com, por Instagram @packdistribuidora.raf o por WhatsApp al +54 3492 51-8311, y te responderemos a la brevedad.",
     special: "contacto",
   },
   {

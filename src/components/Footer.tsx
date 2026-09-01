@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { MessageCircle, Mail, MapPin, Camera } from "lucide-react";
 import { getCategories } from "@/lib/data/products";
-import { HELP_LINKS } from "@/lib/content";
+import { HELP_LINKS, STORE_INFO } from "@/lib/content";
 import Logo from "./Logo";
 
 export default async function Footer() {
@@ -68,13 +68,24 @@ export default async function Footer() {
           <h4 className="text-sm font-semibold mb-4 text-white">Contacto</h4>
           <ul className="flex flex-col gap-3 text-sm text-white/80">
             <li className="flex items-center gap-2">
-              <MessageCircle size={15} className="text-white/70" /> WhatsApp
+              <MessageCircle size={15} className="text-white/70 shrink-0" />
+              <a
+                href={STORE_INFO.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                WhatsApp
+              </a>
             </li>
             <li className="flex items-center gap-2">
-              <Mail size={15} className="text-white/70" /> packdistribuidora@gmail.com
+              <Mail size={15} className="text-white/70 shrink-0" />
+              <a href={`mailto:${STORE_INFO.email}`} className="hover:text-white transition-colors">
+                {STORE_INFO.email}
+              </a>
             </li>
             <li className="flex items-center gap-2">
-              <MapPin size={15} className="text-white/70" /> Rafaela, Santa Fe
+              <MapPin size={15} className="text-white/70 shrink-0" /> {STORE_INFO.location}
             </li>
           </ul>
         </div>

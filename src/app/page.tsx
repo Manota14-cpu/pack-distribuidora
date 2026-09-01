@@ -7,6 +7,7 @@ import FeaturedOffer from "@/components/FeaturedOffer";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import ImageCarouselSection from "@/components/ImageCarouselSection";
 import Newsletter from "@/components/Newsletter";
+import { STORE_INFO } from "@/lib/content";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -17,7 +18,7 @@ const JSON_LD = {
   url: "https://packdistribuidora.com.ar",
   logo: "https://packdistribuidora.com.ar/logos/pack.png",
   image: "https://packdistribuidora.com.ar/logos/pack.png",
-  sameAs: ["https://wa.me/543492518311"],
+  sameAs: [STORE_INFO.whatsapp],
   priceRange: "$$",
   areaServed: "AR",
   address: {
