@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Mail, Camera, MessageCircle } from "lucide-react";
 import type { FaqMayoristaItem } from "@/lib/content";
-import { MAYORISTA_REQUISITOS } from "@/lib/content";
+import { MAYORISTA_REQUISITOS, STORE_INFO } from "@/lib/content";
 import WholesaleForm from "./WholesaleForm";
 
 // Acordeón accesible: botón real (Enter/Espacio funcionan nativos), aria-expanded
@@ -62,6 +62,8 @@ export default function FaqAccordion({ items }: { items: FaqMayoristaItem[] }) {
                 >
                   {item.special === "mayorista" ? (
                     <MayoristaAnswer />
+                  ) : item.special === "contacto" ? (
+                    <ContactoAnswer />
                   ) : (
                     <p>{item.answer}</p>
                   )}
@@ -71,6 +73,55 @@ export default function FaqAccordion({ items }: { items: FaqMayoristaItem[] }) {
           </div>
         );
       })}
+    </div>
+  );
+}
+
+function ContactoAnswer() {
+  const CHANNELS = [
+    {
+      icon: Mail,
+      label: "Mail",
+      value: STORE_INFO.email,
+      href: `mailto:${STORE_INFO.email}`,
+    },
+    {
+      icon: Camera,
+      label: "Instagram",
+      value: STORE_INFO.instagramDisplay,
+      href: STORE_INFO.instagram,
+    },
+    {
+      icon: MessageCircle,
+      label: "WhatsApp",
+      value: STORE_INFO.whatsappDisplay,
+      href: STORE_INFO.whatsapp,
+    },
+  ];
+
+  return (
+    <div>
+      <p>Te podés comunicar con nosotros por estas vías y te responderemos a la brevedad:</p>
+      <ul className="mt-3 flex flex-col gap-2.5">
+        {CHANNELS.map(({ icon: Icon, label, value, href }) => (
+          <li key={label}>
+            <a
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="flex items-center gap-3 rounded-xl border border-[var(--gray)] bg-[var(--gray-light)] px-4 py-3 hover:border-[var(--green-primary)]/40 transition-colors"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--green-primary)]">
+                <Icon size={16} className="text-white" />
+              </span>
+              <span>
+                <span className="block text-xs text-[var(--text-muted)]">{label}</span>
+                <span className="block text-sm font-semibold text-[var(--text)]">{value}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

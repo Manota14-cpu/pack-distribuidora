@@ -7,6 +7,8 @@ export const STORE_INFO = {
   whatsappDisplay: "+54 3492 51-8311",
   phone: "+54 3492 51-8311",
   email: "packdistribuidora@gmail.com",
+  instagram: "https://instagram.com/packdistribuidora.raf",
+  instagramDisplay: "@packdistribuidora.raf",
   location: "Rafaela, Santa Fe",
   country: "Argentina",
   hours: {
@@ -157,8 +159,8 @@ export interface FaqMayoristaItem {
   id: string;
   question: string;
   answer: string;
-  /** Solo la pregunta de requisitos mayorista usa este render especial. */
-  special?: "mayorista";
+  /** "mayorista" muestra el listado + formulario. "contacto" muestra los canales con íconos. */
+  special?: "mayorista" | "contacto";
 }
 
 export const FAQ_MAYORISTA_ITEMS: FaqMayoristaItem[] = [
@@ -178,7 +180,8 @@ export const FAQ_MAYORISTA_ITEMS: FaqMayoristaItem[] = [
     id: "costo-envio-menor",
     question: "¿Qué costo tiene el envío si la compra es menor a $50.000?",
     answer:
-      "Te podés comunicar con nosotros por estas vías de contacto y te responderemos a la brevedad: mail a packdistribuidora@gmail.com, Instagram @packdistribuidora.raf o WhatsApp al +54 3492 51-8311.",
+      "Te podés comunicar con nosotros por mail a packdistribuidora@gmail.com, por Instagram @packdistribuidora.raf o por WhatsApp al +54 3492 51-8311, y te responderemos a la brevedad.",
+    special: "contacto",
   },
   {
     id: "transporte",
