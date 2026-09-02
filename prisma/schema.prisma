@@ -35,6 +35,10 @@ model Product {
   /// Free text, e.g. "30x20x10 cm"
   dimensions      String?
   stockAvailable  Int            @default(0)
+  /// EN DESUSO. Cuando el pedido no descontaba stock, acá se anotaban las
+  /// unidades "reservadas" — y no las leía nadie. Ahora la venta descuenta
+  /// `stockAvailable` de verdad, así que reservar además contaría doble.
+  /// Queda en cero; no escribir sobre esta columna.
   stockReserved   Int            @default(0)
   unit            String
   featured        Boolean        @default(false)
