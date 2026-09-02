@@ -140,6 +140,25 @@ model ProductImage {
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
+/// Registro de los avisos que AppPack manda solo (reposición, pedidos sin
+/// atender). Sirve para dos cosas: dejar constancia de qué se avisó y cuándo,
+/// y no repetir el mismo aviso todos los días — se guarda una huella del
+/// contenido y solo se vuelve a mandar si cambió o si pasó una semana.
+model Notification {
+  id        String   @id @default(dbgenerated("(gen_random_uuid())::text"))
+  /// Por ahora solo "reposicion".
+  type      String
+  /// Huella del contenido del aviso.
+  digest    String
+  /// Canales a los que se envió, separados por coma.
+  channels  String
+  ok        Boolean  @default(true)
+  detail    String?
+  createdAt DateTime @default(now())
+
+  @@index([type, createdAt])
+}
+
 model Lead {
   id        String   @id @default(cuid())
   nombre    String
