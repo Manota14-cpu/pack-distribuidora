@@ -5,8 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { SlidersHorizontal, X } from "lucide-react";
 import { useFocusTrap } from "@/lib/use-focus-trap";
 import {
-  DEFAULT_MAX_PRICE,
   filterAndSortProducts,
+  rangoDePrecios,
   SORT_LABELS,
   type SortOption,
 } from "@/lib/products-utils";
@@ -25,10 +25,14 @@ export default function ProductsExplorer({
   const initialCategory = searchParams.get("categoria") as CategorySlug | null;
   const onlyOffers = searchParams.get("ofertas") === "1";
 
+  // El rango sale del catálogo, no de un número fijo: así el filtro arranca
+  // abarcándolo entero y ningún producto queda escondido por defecto.
+  const rangoPrecios = useMemo(() => rangoDePrecios(initialProducts), [initialProducts]);
+
   const [activeCategories, setActiveCategories] = useState<CategorySlug[]>(
     initialCategory ? [initialCategory] : []
   );
-  const [maxPrice, setMaxPrice] = useState(DEFAULT_MAX_PRICE);
+  const [maxPrice, setMaxPrice] = useState(rangoPrecios.max);
   const [wholesaleOnly, setWholesaleOnly] = useState(false);
   const [offersOnly, setOffersOnly] = useState(onlyOffers);
   const [sort, setSort] = useState<SortOption>("relevancia");
@@ -83,11 +87,12 @@ export default function ProductsExplorer({
         <h3 className="text-sm font-semibold mb-3">Precio máximo</h3>
         <input
           type="range"
-          min={400}
-          max={6000}
-          step={100}
+          min={rangoPrecios.min}
+          max={rangoPrecios.max}
+          step={rangoPrecios.paso}
           value={maxPrice}
           onChange={(e) => setMaxPrice(Number(e.target.value))}
+          aria-label="Precio máximo"
           className="w-full accent-[var(--green-primary)]"
         />
         <p className="text-xs text-[var(--text-muted)] mt-1">Hasta ${maxPrice.toLocaleString("es-AR")}</p>
@@ -119,13 +124,13 @@ export default function ProductsExplorer({
         </label>
       </div>
 
-      {(activeCategories.length > 0 || offersOnly || wholesaleOnly || maxPrice < DEFAULT_MAX_PRICE) && (
+      {(activeCategories.length > 0 || offersOnly || wholesaleOnly || maxPrice < rangoPrecios.max) && (
         <button
           onClick={() => {
             setActiveCategories([]);
             setOffersOnly(false);
             setWholesaleOnly(false);
-            setMaxPrice(DEFAULT_MAX_PRICE);
+            setMaxPrice(rangoPrecios.max);
           }}
           className="text-xs font-semibold text-[var(--green-primary)] text-left"
         >
