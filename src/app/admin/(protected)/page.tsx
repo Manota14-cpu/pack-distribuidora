@@ -33,15 +33,17 @@ export default async function AdminDashboard() {
         <div>
           <h1 className="font-display text-2xl font-bold">Panel de administración</h1>
           <p className="text-white/80 text-sm mt-1">
-            Gestioná stock, productos y el estado de la tienda desde acá.
+            Consultá el catálogo, los pedidos y el estado de la tienda desde acá.
           </p>
         </div>
-        <Link
-          href="/admin/productos/nuevo"
-          className="inline-flex items-center gap-2 self-start rounded-full bg-white px-5 py-3 text-sm font-bold text-[var(--green-primary)] hover:bg-white/90 transition-opacity"
+        <a
+          href="http://localhost:3101/productos"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 self-start rounded-full bg-white px-5 py-3 text-sm font-bold text-[var(--green-primary)] transition-opacity hover:bg-white/90"
         >
-          <Package size={16} /> Nuevo producto
-        </Link>
+          <Package size={16} /> Administrar stock en AppPack
+        </a>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -61,19 +63,21 @@ export default async function AdminDashboard() {
           className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold hover:border-[var(--green-primary)] hover:text-[var(--green-primary)] transition-colors"
         >
           <span className="flex items-center gap-3">
-            <Layers size={18} className="text-[var(--green-primary)]" /> Gestionar productos, stock y etiquetas
+            <Layers size={18} className="text-[var(--green-primary)]" /> Ver el catálogo y su stock
           </span>
           <ArrowRight size={16} />
         </Link>
-        <Link
-          href="/admin/productos/nuevo"
-          className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold hover:border-[var(--green-primary)] hover:text-[var(--green-primary)] transition-colors"
+        <a
+          href="http://localhost:3101/productos"
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold transition-colors hover:border-[var(--green-primary)] hover:text-[var(--green-primary)]"
         >
           <span className="flex items-center gap-3">
-            <ShoppingBag size={18} className="text-[var(--green-primary)]" /> Dar de alta un producto nuevo
+            <ShoppingBag size={18} className="text-[var(--green-primary)]" /> Cargar productos y mover stock (AppPack)
           </span>
           <ArrowRight size={16} />
-        </Link>
+        </a>
         <a
           href="/admin?tab=pedidos"
           className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold hover:border-[var(--green-primary)] hover:text-[var(--green-primary)] transition-colors opacity-60 cursor-not-allowed"

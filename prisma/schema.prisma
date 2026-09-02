@@ -51,6 +51,33 @@ model Product {
   images          ProductImage[]
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
+
+  /// Campos operativos que administra AppPack. La tienda no los muestra.
+  /// Precio de costo, para calcular el valor del inventario.
+  costPrice       Int?
+  /// Punto de reposición: por debajo de esto, AppPack avisa.
+  minStock        Int            @default(0)
+  movements       StockMovement[]
+
+  @@index([active, stockAvailable])
+}
+
+/// Historial de cada cambio de stock. Lo escribe AppPack a través de la
+/// función ajustar_stock(), que además actualiza Product.stockAvailable en
+/// la misma transacción — el stock nunca cambia sin dejar rastro.
+model StockMovement {
+  id             String   @id @default(dbgenerated("(gen_random_uuid())::text"))
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  /// entrada | salida | creacion | ajuste | venta
+  type           String
+  quantity       Int
+  resultingStock Int
+  reason         String?
+  createdAt      DateTime @default(now())
+
+  @@index([productId, createdAt])
+  @@index([createdAt])
 }
 
 model ProductImage {
