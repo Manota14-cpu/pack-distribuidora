@@ -58,6 +58,8 @@ model Product {
   /// Punto de reposición: por debajo de esto, AppPack avisa.
   minStock        Int            @default(0)
   movements       StockMovement[]
+  priceChanges    PriceChange[]
+  countItems      StockCountItem[]
 
   @@index([active, stockAvailable])
 }
@@ -78,6 +80,55 @@ model StockMovement {
 
   @@index([productId, createdAt])
   @@index([createdAt])
+}
+
+/// Cada cambio de precio de venta o de costo. El stock ya tenia historial;
+/// el precio no, y con inflacion la pregunta "cuanto costaba esto en marzo?"
+/// no tenia respuesta.
+model PriceChange {
+  id           String   @id @default(dbgenerated("(gen_random_uuid())::text"))
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  /// Precio de venta antes y despues. Iguales si solo cambio el costo.
+  oldPrice     Int
+  newPrice     Int
+  /// Precio de costo antes y despues. Null cuando no estaba cargado.
+  oldCostPrice Int?
+  newCostPrice Int?
+  reason       String?
+  createdAt    DateTime @default(now())
+
+  @@index([productId, createdAt])
+  @@index([createdAt])
+}
+
+/// Un recuento fisico de inventario: se abre, se van anotando las cantidades
+/// contadas y al cerrarlo se generan todos los ajustes de una sola vez.
+model StockCount {
+  id        String           @id @default(dbgenerated("(gen_random_uuid())::text"))
+  number    Int              @unique
+  /// abierto | cerrado | anulado
+  status    String           @default("abierto")
+  note      String?
+  items     StockCountItem[]
+  createdAt DateTime         @default(now())
+  closedAt  DateTime?
+
+  @@index([status])
+}
+
+model StockCountItem {
+  id        String     @id @default(dbgenerated("(gen_random_uuid())::text"))
+  countId   String
+  count     StockCount @relation(fields: [countId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  /// Lo que decia el sistema cuando se anoto el conteo.
+  expected  Int
+  /// Lo que se conto de verdad. Null mientras no se haya contado.
+  counted   Int?
+
+  @@unique([countId, productId])
 }
 
 model ProductImage {

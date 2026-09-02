@@ -8,22 +8,28 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { prisma } from "@/lib/db";
-import { APPPACK_PRODUCTOS } from "@/lib/apppack";
+import { APPPACK_PEDIDOS, APPPACK_PRODUCTOS } from "@/lib/apppack";
 
 export default async function AdminDashboard() {
-  const [products, activeProducts, categories, orders, leads, subscribers] = await Promise.all([
-    prisma.product.count(),
-    prisma.product.count({ where: { active: true } }),
-    prisma.category.count(),
-    prisma.order.count(),
-    prisma.lead.count(),
-    prisma.newsletterSubscriber.count(),
-  ]);
+  const [products, activeProducts, categories, orders, pendingOrders, leads, subscribers] =
+    await Promise.all([
+      prisma.product.count(),
+      prisma.product.count({ where: { active: true } }),
+      prisma.category.count(),
+      prisma.order.count(),
+      prisma.order.count({ where: { status: { in: ["pendiente", "preparando"] } } }),
+      prisma.lead.count(),
+      prisma.newsletterSubscriber.count(),
+    ]);
 
   const stats = [
     { label: "Productos activos", value: activeProducts, sub: `${products} en total` },
     { label: "Categorías", value: categories, sub: "Catálogo" },
-    { label: "Pedidos recibidos", value: orders, sub: "Por WhatsApp" },
+    {
+      label: "Pedidos recibidos",
+      value: orders,
+      sub: pendingOrders > 0 ? `${pendingOrders} sin entregar` : "Todos entregados",
+    },
     { label: "Mensajes de contacto", value: leads, sub: "Leads" },
     { label: "Suscriptos al newsletter", value: subscribers, sub: "Emails" },
   ];
@@ -80,11 +86,18 @@ export default async function AdminDashboard() {
           <ArrowRight size={16} />
         </a>
         <a
-          href="/admin?tab=pedidos"
-          className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold hover:border-[var(--green-primary)] hover:text-[var(--green-primary)] transition-colors opacity-60 cursor-not-allowed"
+          href={APPPACK_PEDIDOS}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold hover:border-[var(--green-primary)] hover:text-[var(--green-primary)] transition-colors"
         >
           <span className="flex items-center gap-3">
-            <Mail size={18} className="text-[var(--green-primary)]" /> Ver pedidos (próximamente)
+            <Mail size={18} className="text-[var(--green-primary)]" /> Gestionar pedidos (AppPack)
+            {pendingOrders > 0 && (
+              <span className="rounded-full bg-[var(--green-primary)] px-2 py-0.5 text-xs font-bold text-white">
+                {pendingOrders}
+              </span>
+            )}
           </span>
           <ArrowRight size={16} />
         </a>

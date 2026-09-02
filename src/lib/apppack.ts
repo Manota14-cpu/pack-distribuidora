@@ -12,3 +12,6 @@ export const APPPACK_URL =
   process.env.NEXT_PUBLIC_APPPACK_URL?.replace(/\/$/, "") ?? "https://apppack.vercel.app";
 
 export const APPPACK_PRODUCTOS = `${APPPACK_URL}/productos`;
+
+/** Gestión de pedidos: estados, datos del cliente y descuento de stock. */
+export const APPPACK_PEDIDOS = `${APPPACK_URL}/pedidos`;
