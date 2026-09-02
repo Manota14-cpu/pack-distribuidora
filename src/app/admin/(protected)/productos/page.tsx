@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Info } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { APPPACK_PRODUCTOS } from "@/lib/apppack";
 
 /**
  * Vista de solo lectura del catálogo.
@@ -47,7 +48,7 @@ export default async function AdminProductsPage() {
           </span>
         </p>
         <a
-          href="http://localhost:3101/productos"
+          href={APPPACK_PRODUCTOS}
           target="_blank"
           rel="noreferrer"
           className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[var(--green-primary)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--green-primary-hover)]"

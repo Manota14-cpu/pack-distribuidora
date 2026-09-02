@@ -99,17 +99,22 @@ export async function getFeaturedProducts(limit = 8): Promise<Product[]> {
   return rows.map(toProduct);
 }
 
+/**
+ * Ficha pública de un producto.
+ *
+ * Filtra por `active`: sin eso, un producto dado de baja desaparecía del
+ * listado pero su ficha seguía abierta para siempre a quien tuviera el enlace
+ * (o llegara desde Google), con su botón de compra incluido. Ahora devuelve
+ * undefined y la página responde 404.
+ *
+ * Es `findFirst` y no `findUnique` porque este último solo admite campos
+ * únicos en el `where`.
+ */
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
-  const row = await prisma.product.findUnique({
-    where: { slug },
+  const row = await prisma.product.findFirst({
+    where: { slug, active: true },
     include: productInclude,
   });
-  if (!row) return undefined;
-  return toProduct(row);
-}
-
-export async function getProductById(id: string): Promise<Product | undefined> {
-  const row = await prisma.product.findUnique({ where: { id }, include: productInclude });
   if (!row) return undefined;
   return toProduct(row);
 }

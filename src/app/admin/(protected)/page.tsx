@@ -8,6 +8,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { APPPACK_PRODUCTOS } from "@/lib/apppack";
 
 export default async function AdminDashboard() {
   const [products, activeProducts, categories, orders, leads, subscribers] = await Promise.all([
@@ -37,7 +38,7 @@ export default async function AdminDashboard() {
           </p>
         </div>
         <a
-          href="http://localhost:3101/productos"
+          href={APPPACK_PRODUCTOS}
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-2 self-start rounded-full bg-white px-5 py-3 text-sm font-bold text-[var(--green-primary)] transition-opacity hover:bg-white/90"
@@ -68,7 +69,7 @@ export default async function AdminDashboard() {
           <ArrowRight size={16} />
         </Link>
         <a
-          href="http://localhost:3101/productos"
+          href={APPPACK_PRODUCTOS}
           target="_blank"
           rel="noreferrer"
           className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold transition-colors hover:border-[var(--green-primary)] hover:text-[var(--green-primary)]"
