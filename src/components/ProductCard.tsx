@@ -85,7 +85,7 @@ export default function ProductCard({ product, onGreen = false }: { product: Pro
         <button
           onClick={() => addItem(product)}
           disabled={product.stock === 0}
-          className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[var(--green-primary)] text-white text-sm font-semibold py-2.5 opacity-90 group-hover:opacity-100 hover:bg-[var(--green-primary-hover)] disabled:bg-[var(--gray)] disabled:text-[var(--text-muted)] transition-colors"
+          className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[var(--green-primary)] text-white text-sm font-semibold py-2.5 opacity-90 group-hover:opacity-100 hover:bg-[var(--green-primary-hover)] hover:shadow-[0_10px_20px_-10px_rgba(6,59,24,0.6)] disabled:bg-[var(--gray)] disabled:text-[var(--text-muted)] disabled:shadow-none transition-all"
         >
           <ShoppingCart size={15} />
           Agregar

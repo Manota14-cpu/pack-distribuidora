@@ -28,10 +28,12 @@ export default function Hero() {
             </Link>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 max-w-md mx-auto">
+          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-4 max-w-md mx-auto">
             {TRUST_POINTS.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2 text-sm text-white">
-                <Icon size={16} className="text-white/80 shrink-0" />
+              <div key={label} className="flex items-center gap-2.5 text-sm text-white">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15">
+                  <Icon size={15} className="text-white" />
+                </span>
                 {label}
               </div>
             ))}

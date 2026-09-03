@@ -53,29 +53,29 @@ export default function CartPage() {
                     {product.name}
                   </Link>
                   <p className="text-xs text-[var(--text-muted)] mt-0.5">{product.unit}</p>
-                  <p className="text-sm font-bold mt-1.5">
+                  <p className="text-sm font-bold mt-1.5 tabular-nums">
                     ${product.price.toLocaleString("es-AR")}
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-3 border border-[var(--gray)] rounded-full px-2 py-1">
+                  <div className="flex items-center gap-1 border border-[var(--gray)] rounded-full px-1.5 py-1">
                     <button
                       onClick={() => setQuantity(product.id, quantity - 1)}
-                      className="p-1.5 hover:text-[var(--green-primary)]"
+                      className="flex h-7 w-7 items-center justify-center rounded-full hover:bg-[var(--green-primary)]/10 hover:text-[var(--green-primary)] transition-colors"
                       aria-label="Restar"
                     >
                       <Minus size={14} />
                     </button>
-                    <span className="w-5 text-center font-medium text-sm">{quantity}</span>
+                    <span className="w-5 text-center font-medium text-sm tabular-nums">{quantity}</span>
                     <button
                       onClick={() => setQuantity(product.id, quantity + 1)}
-                      className="p-1.5 hover:text-[var(--green-primary)]"
+                      className="flex h-7 w-7 items-center justify-center rounded-full hover:bg-[var(--green-primary)]/10 hover:text-[var(--green-primary)] transition-colors"
                       aria-label="Sumar"
                     >
                       <Plus size={14} />
                     </button>
                   </div>
-                  <span className="font-bold text-sm w-20 text-right">
+                  <span className="font-bold text-sm w-20 text-right tabular-nums">
                     ${(product.price * quantity).toLocaleString("es-AR")}
                   </span>
                   <button
@@ -95,7 +95,7 @@ export default function CartPage() {
           <h2 className="font-display font-bold text-lg">Resumen</h2>
           <div className="flex items-center justify-between text-sm">
             <span className="text-[var(--text-muted)]">Subtotal</span>
-            <span className="font-semibold">${subtotal.toLocaleString("es-AR")}</span>
+            <span className="font-semibold tabular-nums">${subtotal.toLocaleString("es-AR")}</span>
           </div>
           <div className="flex items-center justify-between text-sm">
             <span className="text-[var(--text-muted)]">Envío</span>
@@ -103,11 +103,11 @@ export default function CartPage() {
           </div>
           <div className="flex items-center justify-between text-base font-bold pt-3 border-t border-dashed border-[var(--gray)]">
             <span>Total</span>
-            <span>${subtotal.toLocaleString("es-AR")}</span>
+            <span className="tabular-nums">${subtotal.toLocaleString("es-AR")}</span>
           </div>
           <button
             onClick={openCheckout}
-            className="mt-2 rounded-full bg-[var(--green-primary)] text-white text-sm font-bold py-3.5 hover:bg-[var(--green-primary-hover)] transition-colors"
+            className="mt-2 rounded-full bg-[var(--green-primary)] text-white text-sm font-bold py-3.5 shadow-[0_10px_24px_-12px_rgba(6,59,24,0.5)] hover:bg-[var(--green-primary-hover)] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-12px_rgba(6,59,24,0.55)] transition-all"
           >
             Finalizar pedido
           </button>

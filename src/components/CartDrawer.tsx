@@ -68,24 +68,24 @@ export default function CartDrawer() {
                     <p className="text-sm font-semibold truncate">{product.name}</p>
                     <p className="text-xs text-[var(--text-muted)] mb-2">{product.unit}</p>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 border border-[var(--gray)] rounded-full px-1">
+                      <div className="flex items-center gap-0.5 border border-[var(--gray)] rounded-full px-1">
                         <button
                           onClick={() => setQuantity(product.id, quantity - 1)}
-                          className="p-1 hover:text-[var(--green-primary)]"
+                          className="flex h-6 w-6 items-center justify-center rounded-full hover:bg-[var(--green-primary)]/10 hover:text-[var(--green-primary)] transition-colors"
                           aria-label="Restar"
                         >
                           <Minus size={14} />
                         </button>
-                        <span className="text-sm font-medium w-4 text-center">{quantity}</span>
+                        <span className="text-sm font-medium w-4 text-center tabular-nums">{quantity}</span>
                         <button
                           onClick={() => setQuantity(product.id, quantity + 1)}
-                          className="p-1 hover:text-[var(--green-primary)]"
+                          className="flex h-6 w-6 items-center justify-center rounded-full hover:bg-[var(--green-primary)]/10 hover:text-[var(--green-primary)] transition-colors"
                           aria-label="Sumar"
                         >
                           <Plus size={14} />
                         </button>
                       </div>
-                      <span className="text-sm font-bold">
+                      <span className="text-sm font-bold tabular-nums">
                         ${(product.price * quantity).toLocaleString("es-AR")}
                       </span>
                     </div>
@@ -104,7 +104,7 @@ export default function CartDrawer() {
             <div className="border-t border-[var(--gray)] px-5 py-4 flex flex-col gap-3">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-[var(--text-muted)]">Subtotal</span>
-                <span className="font-semibold">${subtotal.toLocaleString("es-AR")}</span>
+                <span className="font-semibold tabular-nums">${subtotal.toLocaleString("es-AR")}</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-[var(--text-muted)]">Envío</span>
@@ -112,7 +112,7 @@ export default function CartDrawer() {
               </div>
               <div className="flex items-center justify-between text-base font-bold pt-1 border-t border-dashed border-[var(--gray)]">
                 <span>Total</span>
-                <span>${subtotal.toLocaleString("es-AR")}</span>
+                <span className="tabular-nums">${subtotal.toLocaleString("es-AR")}</span>
               </div>
               <Link
                 href="/carrito"
@@ -123,7 +123,7 @@ export default function CartDrawer() {
               </Link>
               <button
                 onClick={() => { closeCart(); openCheckout(); }}
-                className="rounded-full bg-[var(--green-primary)] text-white text-sm font-semibold py-3 hover:bg-[var(--green-primary-hover)] transition-colors"
+                className="rounded-full bg-[var(--green-primary)] text-white text-sm font-semibold py-3 shadow-[0_10px_24px_-12px_rgba(6,59,24,0.5)] hover:bg-[var(--green-primary-hover)] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-12px_rgba(6,59,24,0.55)] transition-all"
               >
                 Finalizar pedido
               </button>

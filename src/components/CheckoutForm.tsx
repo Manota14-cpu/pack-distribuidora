@@ -170,13 +170,13 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                     {items.map(({ product, quantity }) => (
                       <div key={product.id} className="flex justify-between text-xs text-[var(--text-muted)]">
                         <span className="truncate mr-2">{product.name} x{quantity}</span>
-                        <span className="font-medium text-[var(--text)] shrink-0">${(product.price * quantity).toLocaleString("es-AR")}</span>
+                        <span className="font-medium text-[var(--text)] shrink-0 tabular-nums">${(product.price * quantity).toLocaleString("es-AR")}</span>
                       </div>
                     ))}
                   </div>
                   <div className="flex justify-between text-sm font-bold mt-2 pt-2 border-t border-[var(--gray)]">
                     <span>Subtotal</span>
-                    <span>${subtotal.toLocaleString("es-AR")}</span>
+                    <span className="tabular-nums">${subtotal.toLocaleString("es-AR")}</span>
                   </div>
                 </div>
 
@@ -287,7 +287,7 @@ export function CheckoutProvider({ children }: { children: React.ReactNode }) {
                 <div className="px-5 py-4 border-t border-[var(--gray)] sticky bottom-0 bg-[var(--white)]">
                   <div className="flex items-center justify-between text-base font-bold mb-3">
                     <span>Total</span>
-                    <span>${subtotal.toLocaleString("es-AR")}</span>
+                    <span className="tabular-nums">${subtotal.toLocaleString("es-AR")}</span>
                   </div>
                   {error && (
                     <p role="alert" className="mb-3 text-xs font-medium text-red-600">

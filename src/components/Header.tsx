@@ -133,7 +133,7 @@ export default function Header({ categories }: { categories: Category[] }) {
                       </div>
                       <div className="min-w-0">
                         <p className="text-sm font-medium truncate">{p.name}</p>
-                        <p className="text-xs text-[var(--text-muted)]">
+                        <p className="text-xs text-[var(--text-muted)] tabular-nums">
                           ${p.price.toLocaleString("es-AR")}
                         </p>
                       </div>

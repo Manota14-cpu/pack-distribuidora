@@ -164,11 +164,11 @@ export default async function ProductDetailPage({
           <p className="text-sm text-[var(--text-muted)] mt-1">{product.unit}</p>
 
           <div className="flex items-baseline gap-3 mt-5">
-            <span className="font-display text-3xl font-bold">
+            <span className="font-display text-3xl font-bold tabular-nums tracking-tight">
               ${product.price.toLocaleString("es-AR")}
             </span>
             {product.oldPrice && (
-              <span className="text-base text-[var(--text-muted)] line-through">
+              <span className="text-base text-[var(--text-muted)] line-through tabular-nums">
                 Antes ${product.oldPrice.toLocaleString("es-AR")}
               </span>
             )}
