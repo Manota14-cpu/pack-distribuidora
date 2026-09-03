@@ -47,11 +47,11 @@ export default function Home() {
       <PromoCarousel />
       <Hero />
       <TrustBanner />
+      <FeaturedOffer />
+      <FeaturedProducts />
       <Categories />
       <HerramientasTeaser />
       <Wholesale />
-      <FeaturedOffer />
-      <FeaturedProducts />
       <ImageCarouselSection />
       <Newsletter />
     </>

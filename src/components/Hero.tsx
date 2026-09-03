@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Leaf } from "lucide-react";
-import { TRUST_POINTS } from "@/lib/content";
+import { ArrowRight, Leaf, MessageCircle } from "lucide-react";
+import { TRUST_POINTS, STORE_INFO } from "@/lib/content";
 
 export default function Hero() {
   return (
@@ -19,13 +19,21 @@ export default function Hero() {
           <p className="mt-5 text-base sm:text-lg text-white/85 max-w-md mx-auto">
             Productos descartables de calidad para tu hogar, comercio o evento.
           </p>
-          <div className="mt-9 flex justify-center">
+          <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/productos"
               className="inline-flex items-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-base font-bold px-8 py-4 shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-10px_rgba(0,0,0,0.5)] transition-all"
             >
               Ver todos los productos <ArrowRight size={18} />
             </Link>
+            <a
+              href={STORE_INFO.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-white/70 text-white text-base font-bold px-8 py-4 hover:bg-white/10 hover:-translate-y-0.5 transition-all"
+            >
+              <MessageCircle size={18} /> Consultanos ya
+            </a>
           </div>
 
           <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-4 max-w-md mx-auto">
