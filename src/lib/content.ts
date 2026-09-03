@@ -151,6 +151,8 @@ export const HELP_LINKS = [
   { href: "/informacion-de-compra#envios", label: "Envíos" },
   { href: "/informacion-de-compra#devoluciones", label: "Cambios y devoluciones" },
   { href: "/informacion-de-compra#pagos", label: "Formas de pago" },
+  { href: "/herramientas", label: "Herramientas" },
+  { href: "/guias", label: "Guías" },
 ];
 
 // ---- Preguntas frecuentes (envíos + registro mayorista) ----

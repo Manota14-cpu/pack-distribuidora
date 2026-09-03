@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getPublicProductSlugs } from "@/lib/data/products";
+import { GUIAS } from "@/lib/guias-content";
 
 const BASE_URL = "https://packdistribuidora.com.ar";
 
@@ -10,8 +11,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/nosotros`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/informacion-de-compra`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/preguntas-frecuentes`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/herramientas`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/guias`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/contacto`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
+
+  const guiaPages: MetadataRoute.Sitemap = GUIAS.map((g) => ({
+    url: `${BASE_URL}/guias/${g.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.4,
+  }));
 
   let productSlugs: string[] = [];
   try {
@@ -27,5 +37,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...productPages];
+  return [...staticPages, ...guiaPages, ...productPages];
 }

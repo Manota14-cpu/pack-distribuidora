@@ -79,7 +79,7 @@ export default function ProductCard({ product, onGreen = false }: { product: Pro
             ? "Sin stock"
             : lowStock
             ? `Últimas unidades (${product.stock})`
-            : "En stock"}
+            : `En stock (${product.stock})`}
         </p>
 
         <button

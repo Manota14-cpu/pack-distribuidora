@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import PromoCarousel from "@/components/PromoCarousel";
 import TrustBanner from "@/components/TrustBanner";
 import Categories from "@/components/Categories";
+import HerramientasTeaser from "@/components/HerramientasTeaser";
 import Wholesale from "@/components/Wholesale";
 import FeaturedOffer from "@/components/FeaturedOffer";
 import FeaturedProducts from "@/components/FeaturedProducts";
@@ -47,6 +48,7 @@ export default function Home() {
       <Hero />
       <TrustBanner />
       <Categories />
+      <HerramientasTeaser />
       <Wholesale />
       <FeaturedOffer />
       <FeaturedProducts />
