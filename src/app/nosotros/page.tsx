@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MessageCircle, ArrowRight } from "lucide-react";
-import WhyUs from "@/components/WhyUs";
 import {
   COMPANY_HISTORY,
   COMPANY_VALUES,
@@ -112,9 +111,6 @@ export default function NosotrosPage() {
           </div>
         </div>
       </section>
-
-      {/* Por qué elegirnos */}
-      <WhyUs />
 
       {/* Misión + CTA */}
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">

@@ -5,10 +5,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
-  Truck,
+  LayoutGrid,
   Tags,
-  BadgePercent,
-  HeartHandshake,
+  Truck,
+  Headset,
+  Heart,
+  Handshake,
   type LucideIcon,
 } from "lucide-react";
 
@@ -19,30 +21,44 @@ interface Slide {
   cta: { label: string; href: string };
 }
 
+// Por qué elegirnos — antes vivía en /nosotros, ahora es el contenido del
+// carrusel principal de la home.
 const SLIDES: Slide[] = [
   {
-    icon: Truck,
-    title: "Envíos a todo el país",
-    text: "Coordinamos la entrega a tu domicilio o retiro sin cargo en nuestro local de Rafaela.",
+    icon: LayoutGrid,
+    title: "Amplia variedad",
+    text: "Todo lo que necesitás, en un solo lugar.",
     cta: { label: "Ver productos", href: "/productos" },
   },
   {
     icon: Tags,
-    title: "Precios mayoristas",
-    text: "Accedé a precios diferenciales por volumen y reposición programada para tu negocio.",
-    cta: { label: "Quiero ser mayorista", href: "/contacto" },
-  },
-  {
-    icon: BadgePercent,
-    title: "Packs con descuento",
-    text: "Combos armados para gastronomía, eventos y comercio con precios especiales.",
+    title: "Precios competitivos",
+    text: "Buscamos ofrecerte los mejores precios para acompañar tu negocio.",
     cta: { label: "Ver ofertas", href: "/productos?ofertas=1" },
   },
   {
-    icon: HeartHandshake,
+    icon: Truck,
+    title: "Envíos",
+    text: "Llevamos tus pedidos hasta donde estés, de forma rápida y segura.",
+    cta: { label: "Cómo enviamos", href: "/informacion-de-compra#envios" },
+  },
+  {
+    icon: Headset,
     title: "Atención personalizada",
-    text: "Te acompañamos en tu pedido de principio a fin, minorista o mayorista.",
+    text: "Te conocemos, escuchamos, asesoramos, como nos gusta que nos atiendan a nosotros.",
     cta: { label: "Conocenos", href: "/nosotros" },
+  },
+  {
+    icon: Heart,
+    title: "Empatía",
+    text: "Conocemos tus necesidades y trabajamos con vos para encontrar siempre la mejor solución.",
+    cta: { label: "Contactanos", href: "/contacto" },
+  },
+  {
+    icon: Handshake,
+    title: "Compromiso",
+    text: "Trabajamos con dedicación y compromiso para acompañarte siempre.",
+    cta: { label: "Quiero ser mayorista", href: "/contacto" },
   },
 ];
 
@@ -73,7 +89,7 @@ export default function PromoCarousel() {
 
   return (
     <section
-      aria-label="Novedades y beneficios"
+      aria-label="Por qué elegirnos"
       className="relative bg-[var(--gray-light)] overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
