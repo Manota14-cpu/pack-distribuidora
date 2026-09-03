@@ -11,14 +11,18 @@ export default function Logo({
   const size = compact ? "h-20 w-20" : "h-24 w-24";
 
   return (
-    <Link href="/" className={`flex items-center shrink-0 ${className}`} aria-label="PACK Distribuidora — inicio">
+    <Link
+      href="/"
+      className={`flex items-center shrink-0 overflow-hidden ${size} ${className}`}
+      aria-label="PACK Distribuidora — inicio"
+    >
       <Image
         src="/logos/pack.png"
         alt=""
         width={96}
         height={96}
         priority
-        className={`shrink-0 ${size}`}
+        className="h-full w-full object-contain scale-[1.22]"
       />
     </Link>
   );

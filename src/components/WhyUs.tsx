@@ -1,25 +1,35 @@
-import { LayoutGrid, Tags, Truck, Headset } from "lucide-react";
+import { LayoutGrid, Tags, Truck, Headset, Heart, Handshake } from "lucide-react";
 
 const REASONS = [
   {
     icon: LayoutGrid,
     title: "Amplia variedad",
-    text: "Todo lo que necesitás en un solo lugar.",
+    text: "Todo lo que necesitás, en un solo lugar.",
   },
   {
     icon: Tags,
     title: "Precios competitivos",
-    text: "Los mejores precios del mercado.",
+    text: "Buscamos ofrecerte los mejores precios para acompañar tu negocio.",
   },
   {
     icon: Truck,
     title: "Envíos",
-    text: "Llegamos a donde estés.",
+    text: "Llevamos tus pedidos hasta donde estés, de forma rápida y segura.",
   },
   {
     icon: Headset,
     title: "Atención personalizada",
-    text: "Te asesoramos en todo lo que necesites.",
+    text: "Te conocemos, escuchamos, asesoramos, como nos gusta que nos atiendan a nosotros.",
+  },
+  {
+    icon: Heart,
+    title: "Empatía",
+    text: "Conocemos tus necesidades y trabajamos con vos para encontrar siempre la mejor solución.",
+  },
+  {
+    icon: Handshake,
+    title: "Compromiso",
+    text: "Trabajamos con dedicación y compromiso para acompañarte siempre.",
   },
 ];
 
@@ -35,7 +45,7 @@ export default function WhyUs() {
             ¿Por qué Pack Distribuidora?
           </h2>
         </div>
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {REASONS.map(({ icon: Icon, title, text }) => (
             <div
               key={title}
