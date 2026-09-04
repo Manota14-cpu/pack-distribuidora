@@ -167,8 +167,14 @@ model Order {
   direccion      String?
   localidad      String?
   provincia      String?
-  /// efectivo | transferencia | tarjeta | otro. Solo en ventas de mostrador.
+  /// Etiqueta rápida del medio de pago: el único usado, o "mixto" si hubo
+  /// varios. La verdad está en `payments`; esta columna existe para poder
+  /// listar y filtrar sin unir tablas en cada consulta.
   paymentMethod  String?
+  payments       OrderPayment[]
+  /// Cuánto entregó el cliente en efectivo, para poder reimprimir el vuelto.
+  /// No es parte de la venta: es lo que pasó de mano.
+  cashReceived   Int?
   /// Turno de caja en el que se cobró, si fue por mostrador.
   sessionId      String?
   session        CashSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
@@ -229,5 +235,22 @@ model OrderItem {
   name      String
   unit      String
   price     Int
+  /// Negativa en una devolución: así toda suma de `price * quantity` da el
+  /// signo correcto sin que cada consulta tenga que acordarse del caso.
   quantity  Int
+}
+
+/// Cómo se pagó una venta. Una fila por medio de pago, porque en el mostrador
+/// "mitad efectivo, mitad transferencia" es lo normal y con una sola columna
+/// había que elegir cuál mentir.
+model OrderPayment {
+  id      String @id @default(dbgenerated("(gen_random_uuid())::text"))
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  /// efectivo | transferencia | tarjeta | otro
+  method  String
+  /// Negativo en una devolución.
+  amount  Int
+
+  @@index([orderId])
 }

@@ -101,15 +101,20 @@ export default async function AdminDashboard() {
           </span>
           <ArrowRight size={16} />
         </a>
-        <a
-          href="/admin?tab=leads"
-          className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold hover:border-[var(--green-primary)] hover:text-[var(--green-primary)] transition-colors opacity-60 cursor-not-allowed"
-        >
-          <span className="flex items-center gap-3">
-            <Users size={18} className="text-[var(--green-primary)]" /> Ver mensajes de contacto (próximamente)
+        {/* Los mensajes de contacto no tienen pantalla propia: con un puñado
+            de consultas, una lista sería una pantalla que nadie abre. Se
+            muestra el número acá y se lee el detalle en la base cuando haga
+            falta — mejor eso que un enlace apagado que promete algo. */}
+        <div className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm">
+          <span className="flex items-center gap-3 font-semibold">
+            <Users size={18} className="text-[var(--green-primary)]" /> Mensajes de contacto
           </span>
-          <ArrowRight size={16} />
-        </a>
+          <span className="text-[var(--text-muted)]">
+            {leads === 0
+              ? "Ninguno todavía"
+              : `${leads} ${leads === 1 ? "recibido" : "recibidos"}`}
+          </span>
+        </div>
       </div>
     </main>
   );
