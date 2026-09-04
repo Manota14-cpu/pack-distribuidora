@@ -198,8 +198,27 @@ model CashSession {
   openedAt     DateTime  @default(now())
   closedAt     DateTime?
   orders       Order[]
+  movements    CashMovement[]
 
   @@index([status])
+}
+
+/// Plata que entra o sale de la caja sin ser una venta: se paga un flete, se
+/// lleva la recaudación al banco, se agrega cambio. Sin registrarlo, el arqueo
+/// de cierre marcaría un faltante que en realidad no lo es — y al tercer día
+/// nadie mira más la diferencia.
+model CashMovement {
+  id        String      @id @default(dbgenerated("(gen_random_uuid())::text"))
+  sessionId String
+  session   CashSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  /// retiro | ingreso
+  type      String
+  /// Siempre positivo; el signo lo da `type`.
+  amount    Int
+  reason    String
+  createdAt DateTime    @default(now())
+
+  @@index([sessionId, createdAt])
 }
 
 model OrderItem {
