@@ -237,6 +237,7 @@ model CashSession {
   closedAt     DateTime?
   orders       Order[]
   movements    CashMovement[]
+  expenses     Expense[]
 
   @@index([status])
 }
@@ -257,6 +258,43 @@ model CashMovement {
   createdAt DateTime    @default(now())
 
   @@index([sessionId, createdAt])
+}
+
+/// Un gasto anotado: un flete, la boleta de la luz, un pago a un proveedor.
+///
+/// Sin esto la ganancia era "lo vendido menos lo que costó la mercadería", que
+/// ignora todo lo que se paga para que el negocio abra la persiana. Un gasto no
+/// es una venta al revés: no toca stock ni clientes, por eso vive aparte.
+model Expense {
+  id          String       @id @default(dbgenerated("(gen_random_uuid())::text"))
+  /// El día del gasto, que no es siempre el día en que se anota — la boleta
+  /// aparece el jueves y es del lunes. Es `date` y no `timestamp` porque a un
+  /// gasto la hora no le agrega nada y sí le agrega problemas de zona horaria.
+  fecha       DateTime     @db.Date
+  /// mercaderia | envios | servicios | alquiler | sueldos | impuestos |
+  /// transporte | mantenimiento | insumos | bancario | otro
+  categoria   String
+  concepto    String
+  monto       Int
+  /// efectivo | transferencia | tarjeta | otro
+  metodoPago  String       @default("efectivo")
+  proveedor   String?
+  /// Nº de factura o recibo, para poder encontrar el papel después.
+  comprobante String?
+  notas       String?
+  /// El turno del que salió la plata, cuando se pagó del cajón.
+  sessionId   String?
+  session     CashSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  /// El retiro que este gasto generó en la caja. Van juntos: son la misma
+  /// plata anotada en dos lugares, y si el retiro no existiera el arqueo del
+  /// cierre marcaría un faltante que nadie sabría explicar.
+  movementId  String?      @unique
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([fecha])
+  @@index([categoria])
+  @@index([sessionId])
 }
 
 model OrderItem {
