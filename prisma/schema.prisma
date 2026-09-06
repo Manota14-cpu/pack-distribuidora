@@ -133,6 +133,32 @@ model Notification {
   @@index([type, createdAt])
 }
 
+/// La agenda de clientes.
+///
+/// Existe para dejar de escribir el mismo nombre y teléfono en cada venta, y
+/// para poder responder "cuánto me compró este cliente" — que con el nombre
+/// suelto en cada pedido no se podía.
+model Customer {
+  id          String   @id @default(dbgenerated("(gen_random_uuid())::text"))
+  nombre      String
+  telefono    String?
+  email       String?
+  ciudad      String?
+  direccion   String?
+  /// Para facturar, cuando haga falta.
+  dniCuit     String?
+  razonSocial String?
+  notas       String?
+  /// Se archiva en vez de borrarse: sus ventas tienen que seguir teniendo dueño.
+  activo      Boolean  @default(true)
+  orders      Order[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([nombre])
+  @@index([activo])
+}
+
 model Lead {
   id        String   @id @default(cuid())
   nombre    String
@@ -175,6 +201,11 @@ model Order {
   /// Cuánto entregó el cliente en efectivo, para poder reimprimir el vuelto.
   /// No es parte de la venta: es lo que pasó de mano.
   cashReceived   Int?
+  /// El cliente de la agenda, cuando la venta se le cargó a alguien conocido.
+  /// `nombre` se conserva igual: es cómo se llamaba el cliente ESE día, y
+  /// renombrarlo después no debería reescribir comprobantes ya impresos.
+  customerId     String?
+  customer       Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
   /// Turno de caja en el que se cobró, si fue por mostrador.
   sessionId      String?
   session        CashSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
@@ -186,6 +217,7 @@ model Order {
   @@index([channel])
   @@index([status])
   @@index([sessionId])
+  @@index([customerId])
 }
 
 /// Un turno de caja: se abre con un fondo, se cobra durante el día y se
