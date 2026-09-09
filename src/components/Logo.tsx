@@ -8,21 +8,21 @@ export default function Logo({
   compact?: boolean;
   className?: string;
 }) {
-  const size = compact ? "h-20 w-20" : "h-24 w-24";
+  const heightClass = compact ? "h-11" : "h-14";
 
   return (
     <Link
       href="/"
-      className={`flex items-center shrink-0 overflow-hidden ${size} ${className}`}
+      className={`flex items-center shrink-0 ${heightClass} ${className}`}
       aria-label="PACK Distribuidora — inicio"
     >
       <Image
-        src="/logos/pack.png"
+        src="/logos/pack-wordmark.png"
         alt=""
-        width={96}
-        height={96}
+        width={1350}
+        height={690}
         priority
-        className="h-full w-full object-contain scale-[1.22]"
+        className="h-full w-auto object-contain"
       />
     </Link>
   );
