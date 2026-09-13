@@ -95,6 +95,20 @@ export default async function Footer() {
           <span>&copy; {new Date().getFullYear()} Pack Distribuidora. Todos los derechos reservados.</span>
           <span>Hecho para comercios y hogares de todo el país.</span>
         </div>
+        <div className="mx-auto max-w-7xl px-6 pb-5 text-xs text-white/60 flex items-center justify-center sm:justify-end">
+          <span>
+            Sitio creado por{" "}
+            <a
+              href="https://visual-solution.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white/80 hover:text-white transition-colors"
+            >
+              Visual Solution
+            </a>
+            . Todos los derechos reservados.
+          </span>
+        </div>
       </div>
     </footer>
   );
