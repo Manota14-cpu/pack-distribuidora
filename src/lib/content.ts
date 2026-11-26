@@ -9,7 +9,11 @@ export const STORE_INFO = {
   email: "packdistribuidora1@gmail.com",
   instagram: "https://instagram.com/packdistribuidora.raf",
   instagramDisplay: "@packdistribuidora.raf",
+  /** Dirección del local, para retiros. */
+  address: "Dopazo 99, esq. América",
   location: "Rafaela, Santa Fe",
+  /** Búsqueda de Google Maps para el mapa de Contacto y los enlaces "Cómo llegar". */
+  mapsQuery: "Dopazo 99, Rafaela, Santa Fe, Argentina",
   country: "Argentina",
   hours: {
     weekdays: "Lunes a viernes: 8:30 – 12:00 y 15:30 – 19:30",
@@ -17,6 +21,9 @@ export const STORE_INFO = {
     sunday: "Domingos: 10:00 – 12:00",
   },
 };
+
+/** Enlace a Google Maps con la dirección del local. */
+export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(STORE_INFO.mapsQuery)}`;
 
 export interface TrustPoint {
   icon: LucideIcon;
@@ -88,7 +95,7 @@ export const SHIPPING_INFO = {
   priorities: [
     "CABA, GBA y Santa Fe: entregas prioritarias y rápidas.",
     "Resto del país: envíos por transporte y correo.",
-    "Retiro sin cargo en nuestro local de Rafaela, Santa Fe.",
+    "Retiro sin cargo en nuestro local: Dopazo 99, esq. América, Rafaela, Santa Fe.",
   ],
   notes: [
     "Despachamos tu pedido en 24/48 hs hábiles.",
@@ -137,7 +144,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "¿Puedo retirar mi pedido en el local?",
     answer:
-      "Sí, el retiro es sin cargo en nuestro local de Rafaela, Santa Fe, de lunes a viernes de 8:30 a 12 y de 15:30 a 19:30, sábados de 9 a 12 y de 16 a 20, y domingos de 10 a 12.",
+      "Sí, el retiro es sin cargo en nuestro local de Dopazo 99, esquina América, Rafaela, de lunes a viernes de 8:30 a 12 y de 15:30 a 19:30, sábados de 9 a 12 y de 16 a 20, y domingos de 10 a 12.",
   },
   {
     question: "¿Cómo hago para ser mayorista?",

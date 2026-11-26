@@ -256,7 +256,9 @@ export default function InfoCompraPage() {
           <div className="rounded-2xl border border-[var(--gray)] bg-[var(--white)] p-6 flex flex-col gap-3 text-sm">
             <div className="flex items-center gap-2.5">
               <MapPin size={16} className="text-[var(--green-primary)] shrink-0" />
-              <span className="text-[var(--text-muted)]">{STORE_INFO.location}, {STORE_INFO.country}</span>
+              <span className="text-[var(--text-muted)]">
+                {STORE_INFO.address}, {STORE_INFO.location}
+              </span>
             </div>
             <div className="flex items-start gap-2.5">
               <Clock size={16} className="text-[var(--green-primary)] shrink-0 mt-0.5" />

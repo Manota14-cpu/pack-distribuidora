@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle, Mail, MapPin, Camera } from "lucide-react";
-import { HELP_LINKS, STORE_INFO } from "@/lib/content";
+import { HELP_LINKS, MAPS_URL, STORE_INFO } from "@/lib/content";
 import { CATEGORIAS } from "@/lib/catalogo";
 import Logo from "./Logo";
 
@@ -84,7 +84,12 @@ export default function Footer() {
               </a>
             </li>
             <li className="flex items-center gap-2">
-              <MapPin size={15} className="text-white/70 shrink-0" /> {STORE_INFO.location}
+              <MapPin size={15} className="text-white/70 shrink-0 self-start mt-0.5" />
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                {STORE_INFO.address}
+                <br />
+                {STORE_INFO.location}
+              </a>
             </li>
           </ul>
         </div>

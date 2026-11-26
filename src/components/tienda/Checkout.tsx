@@ -313,7 +313,7 @@ export default function Checkout() {
                     onClick={() => setDatos((d) => ({ ...d, entrega: "retiro" }))}
                     icono={Store}
                     titulo="Retiro en el local"
-                    texto={`Sin cargo, en ${STORE_INFO.location}.`}
+                    texto={`Sin cargo, en ${STORE_INFO.address}, Rafaela.`}
                   />
                   <Opcion
                     nombre="entrega"

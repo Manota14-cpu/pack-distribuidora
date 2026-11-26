@@ -151,7 +151,7 @@ export default async function ProductoPage({ params }: Props) {
 
           <ul className="mt-2 grid gap-3 rounded-2xl border border-[var(--gray)] p-5 text-sm sm:grid-cols-2">
             <Beneficio icono={Truck} titulo="Envíos a todo el país" texto="Despachamos en 24/48 hs hábiles." href="/informacion-de-compra#envios" />
-            <Beneficio icono={Store} titulo="Retiro sin cargo" texto="En nuestro local de Rafaela." href="/informacion-de-compra#envios" />
+            <Beneficio icono={Store} titulo="Retiro sin cargo" texto="En Dopazo 99, esq. América, Rafaela." href="/informacion-de-compra#envios" />
             <Beneficio
               icono={CreditCard}
               titulo="Pagá como quieras"

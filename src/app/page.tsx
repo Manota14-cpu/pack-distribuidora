@@ -21,6 +21,7 @@ const JSON_LD = {
   areaServed: "AR",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Dopazo 99",
     addressLocality: "Rafaela",
     addressRegion: "Santa Fe",
     addressCountry: "AR",

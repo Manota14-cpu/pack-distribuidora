@@ -14,7 +14,8 @@ const csp = [
   "img-src 'self' data: blob: https: http:",
   "font-src 'self' data:",
   `connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com ${VISUAL_APP}`,
-  "frame-src 'self'",
+  // El mapa de la página de Contacto es un iframe de Google Maps.
+  "frame-src 'self' https://www.google.com",
   "worker-src 'self' blob:",
 ].join("; ");
 

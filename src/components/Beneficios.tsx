@@ -6,7 +6,7 @@ import { Headset, Store, Tags, Truck } from "lucide-react";
  */
 const BENEFICIOS = [
   { icon: Truck, titulo: "Envíos a todo el país", texto: "Despachamos en 24/48 hs hábiles" },
-  { icon: Store, titulo: "Retiro sin cargo", texto: "En nuestro local de Rafaela" },
+  { icon: Store, titulo: "Retiro sin cargo", texto: "Dopazo 99, esq. América" },
   { icon: Tags, titulo: "Precios mayoristas", texto: "Mejores precios por volumen" },
   { icon: Headset, titulo: "Atención personalizada", texto: "Te asesoramos por WhatsApp" },
 ];

@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Mail, MessageCircle, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
-import { STORE_INFO } from "@/lib/content";
+import { STORE_INFO, MAPS_URL } from "@/lib/content";
 
 const HOURS_ROWS = [STORE_INFO.hours.weekdays, STORE_INFO.hours.saturday, STORE_INFO.hours.sunday].map(
   (line) => {
@@ -216,8 +216,13 @@ export default function ContactoPage() {
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="mt-0.5 shrink-0 text-[var(--green-primary)]" />
                 <div>
-                  <p className="text-sm font-medium">{STORE_INFO.location}</p>
-                  <p className="text-xs text-[var(--text-muted)]">{STORE_INFO.country}</p>
+                  <p className="text-sm font-medium">{STORE_INFO.address}</p>
+                  <p className="text-xs text-[var(--text-muted)]">
+                    {STORE_INFO.location}, {STORE_INFO.country} ·{" "}
+                    <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--green-primary)] hover:underline">
+                      Cómo llegar
+                    </a>
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -235,9 +240,7 @@ export default function ContactoPage() {
           <div className="rounded-2xl border border-[var(--gray)] bg-[var(--white)] p-2 overflow-hidden">
             <iframe
               title={`Ubicación de ${STORE_INFO.name}`}
-              src={`https://www.google.com/maps?q=${encodeURIComponent(
-                `${STORE_INFO.name}, ${STORE_INFO.location}, ${STORE_INFO.country}`
-              )}&output=embed`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(STORE_INFO.mapsQuery)}&output=embed`}
               className="w-full h-56 rounded-xl border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
