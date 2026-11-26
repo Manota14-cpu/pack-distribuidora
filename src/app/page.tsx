@@ -1,11 +1,8 @@
 import Hero from "@/components/Hero";
 import PromoCarousel from "@/components/PromoCarousel";
 import TrustBanner from "@/components/TrustBanner";
-import Categories from "@/components/Categories";
 import HerramientasTeaser from "@/components/HerramientasTeaser";
 import Wholesale from "@/components/Wholesale";
-import FeaturedOffer from "@/components/FeaturedOffer";
-import FeaturedProducts from "@/components/FeaturedProducts";
 import ImageCarouselSection from "@/components/ImageCarouselSection";
 import Newsletter from "@/components/Newsletter";
 import { STORE_INFO } from "@/lib/content";
@@ -47,9 +44,6 @@ export default function Home() {
       <PromoCarousel />
       <Hero />
       <TrustBanner />
-      <FeaturedOffer />
-      <FeaturedProducts />
-      <Categories />
       <HerramientasTeaser />
       <Wholesale />
       <ImageCarouselSection />

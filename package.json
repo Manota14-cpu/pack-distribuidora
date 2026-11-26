@@ -14,13 +14,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "db:generate": "prisma generate",
-    "db:push": "prisma db push",
-    "db:seed": "prisma db seed",
-    "db:import-visual": "tsx scripts/importar-visual-app.ts",
-    "db:reset": "prisma db push --force-reset && prisma db seed"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "db:push": "prisma db push"
   },
   "dependencies": {
     "@fontsource/manrope": "^5.3.0",
@@ -43,7 +37,6 @@
     "eslint-config-next": "16.3.3",
     "prisma": "^6.19.1",
     "tailwindcss": "^4",
-    "tsx": "^4.23.12",
     "typescript": "^5",
     "vitest": "^4.1.11"
   }

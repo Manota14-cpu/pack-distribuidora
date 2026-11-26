@@ -1,51 +1,32 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Calculator, ShoppingCart, Minus, Plus } from "lucide-react";
-import type { Product } from "@/lib/types";
-import { useCart } from "@/lib/cart-context";
+import { Calculator, ShoppingBag, MessageCircle, Minus, Plus } from "lucide-react";
+import { STORE_INFO } from "@/lib/content";
 import {
   EVENT_RATIOS,
   EVENT_CATEGORY_LABELS,
   buildCalculatorLines,
-  type CalculatorLine,
+  calculatorWhatsAppText,
+  type EventCategory,
 } from "@/lib/calculator-utils";
 
-type CategoryKey = keyof typeof EVENT_RATIOS;
-
-export default function EventCalculator({
-  productByCategory,
-}: {
-  productByCategory: Partial<Record<CategoryKey, Product>>;
-}) {
-  const { addItem } = useCart();
+export default function EventCalculator() {
   const [personas, setPersonas] = useState(20);
-  const [active, setActive] = useState<Set<CategoryKey>>(
-    new Set(Object.keys(EVENT_RATIOS) as CategoryKey[])
+  const [active, setActive] = useState<Set<EventCategory>>(
+    new Set(Object.keys(EVENT_RATIOS) as EventCategory[])
   );
-  const [added, setAdded] = useState(false);
 
-  const lines = useMemo(
-    () => buildCalculatorLines(personas, active, productByCategory),
-    [personas, active, productByCategory]
-  );
-  const total = lines.reduce((sum, l) => sum + l.subtotal, 0);
+  const lines = useMemo(() => buildCalculatorLines(personas, active), [personas, active]);
 
-  function toggleCategory(cat: CategoryKey) {
+  function toggleCategory(cat: EventCategory) {
     setActive((prev) => {
       const next = new Set(prev);
       if (next.has(cat)) next.delete(cat);
       else next.add(cat);
       return next;
     });
-    setAdded(false);
-  }
-
-  function handleAddAll() {
-    for (const line of lines) {
-      addItem(line.product, line.packsToBuy);
-    }
-    setAdded(true);
   }
 
   return (
@@ -59,7 +40,7 @@ export default function EventCalculator({
             ¿Cuánto necesito para mi evento?
           </h2>
           <p className="text-sm text-[var(--text-muted)]">
-            Poné la cantidad de personas y te armamos los packs sugeridos.
+            Poné la cantidad de personas y te decimos cuánto necesitás.
           </p>
         </div>
       </div>
@@ -99,7 +80,7 @@ export default function EventCalculator({
 
       {/* Categorías a incluir */}
       <div className="mt-5 flex flex-wrap gap-2">
-        {(Object.keys(EVENT_RATIOS) as CategoryKey[]).map((cat) => (
+        {(Object.keys(EVENT_RATIOS) as EventCategory[]).map((cat) => (
           <button
             key={cat}
             type="button"
@@ -123,62 +104,41 @@ export default function EventCalculator({
         </p>
       ) : (
         <>
-          <div className="mt-6 flex flex-col gap-3">
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
             {lines.map((line) => (
-              <CalculatorLineRow key={line.category} line={line} />
+              <div key={line.category} className="rounded-xl bg-[var(--gray-light)] px-4 py-3">
+                <p className="text-xs text-[var(--text-muted)]">{EVENT_CATEGORY_LABELS[line.category]}</p>
+                <p className="font-display text-2xl font-bold tabular-nums">{line.units}</p>
+              </div>
             ))}
           </div>
 
           <div className="tear-strip my-5" />
 
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div>
-              <p className="text-xs text-[var(--text-muted)]">Total estimado</p>
-              <p className="font-display text-2xl font-bold tabular-nums">
-                ${total.toLocaleString("es-AR")}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={handleAddAll}
+          <div className="flex items-center gap-3 flex-wrap">
+            <Link
+              href="/productos"
               className="inline-flex items-center gap-2 rounded-full bg-[var(--green-primary)] text-white text-sm font-bold px-6 py-3.5 hover:bg-[var(--green-primary-hover)] hover:-translate-y-0.5 transition-all"
             >
-              <ShoppingCart size={16} />
-              Agregar todo al carrito
-            </button>
+              <ShoppingBag size={16} />
+              Elegir los productos
+            </Link>
+            <a
+              href={`${STORE_INFO.whatsapp}?text=${encodeURIComponent(calculatorWhatsAppText(personas, lines))}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--green-primary)] text-[var(--green-primary)] text-sm font-bold px-6 py-3.5 hover:bg-[var(--green-primary)]/5 transition-colors"
+            >
+              <MessageCircle size={16} />
+              Pedir que me lo armen
+            </a>
           </div>
-          {added && (
-            <p role="status" className="mt-3 text-sm font-medium text-[var(--green-primary)]">
-              ¡Listo! Agregamos los productos sugeridos a tu carrito.
-            </p>
-          )}
           <p className="mt-3 text-xs text-[var(--text-muted)]">
             Cálculo orientativo (2 vasos, 1 plato, 1 set de cubiertos y 3 servilletas por
-            persona). Ajustá las cantidades desde el carrito si lo necesitás.
+            persona). En la tienda elegís la presentación que más te convenga.
           </p>
         </>
       )}
-    </div>
-  );
-}
-
-function CalculatorLineRow({ line }: { line: CalculatorLine }) {
-  return (
-    <div className="flex items-center justify-between gap-3 rounded-xl bg-[var(--gray-light)] px-4 py-3">
-      <div className="min-w-0">
-        <p className="text-sm font-semibold truncate">{line.product.name}</p>
-        <p className="text-xs text-[var(--text-muted)]">
-          {line.neededUnits} unidades necesarias · paquetes de {line.packSize}
-        </p>
-      </div>
-      <div className="text-right shrink-0">
-        <p className="text-sm font-bold tabular-nums">
-          {line.packsToBuy} pack{line.packsToBuy !== 1 && "s"}
-        </p>
-        <p className="text-xs text-[var(--text-muted)] tabular-nums">
-          ${line.subtotal.toLocaleString("es-AR")}
-        </p>
-      </div>
     </div>
   );
 }

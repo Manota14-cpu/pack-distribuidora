@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
-import { getProducts } from "@/lib/data/products";
-import { pickRepresentativeProduct, EVENT_RATIOS } from "@/lib/calculator-utils";
-import type { Product } from "@/lib/types";
 import EventCalculator from "@/components/EventCalculator";
 import RubroSelector from "@/components/RubroSelector";
-
-export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Herramientas",
@@ -18,31 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RUBRO_SLUGS = [
-  "pack-verduleria",
-  "pack-carniceria",
-  "pack-panaderia",
-  "pack-kiosco-almacen",
-  "pack-cumpleanos",
-  "pack-resto-rubros",
-];
-
-export default async function HerramientasPage() {
-  const products = await getProducts({ onlyActive: true });
-
-  const productByCategory: Partial<Record<keyof typeof EVENT_RATIOS, Product>> = {
-    vasos: pickRepresentativeProduct(products.filter((p) => p.category === "vasos")),
-    platos: pickRepresentativeProduct(products.filter((p) => p.category === "platos")),
-    cubiertos: pickRepresentativeProduct(products.filter((p) => p.category === "cubiertos")),
-    servilletas: pickRepresentativeProduct(products.filter((p) => p.category === "servilletas")),
-  };
-
-  const packsBySlug: Record<string, Product> = {};
-  for (const slug of RUBRO_SLUGS) {
-    const product = products.find((p) => p.slug === slug);
-    if (product) packsBySlug[slug] = product;
-  }
-
+export default function HerramientasPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-12">
       <div className="text-center mb-10">
@@ -54,16 +25,16 @@ export default async function HerramientasPage() {
         </h1>
         <p className="mt-3 text-[var(--text-muted)] max-w-xl mx-auto">
           Dos formas rápidas de armar tu pedido: calculá cantidades para un evento o
-          encontrá el pack pensado para tu rubro.
+          pedí un pack armado para tu rubro.
         </p>
       </div>
 
       <div id="calculadora" className="scroll-mt-24">
-        <EventCalculator productByCategory={productByCategory} />
+        <EventCalculator />
       </div>
 
       <div id="tu-rubro" className="scroll-mt-24 mt-8">
-        <RubroSelector packsBySlug={packsBySlug} />
+        <RubroSelector />
       </div>
 
       <div className="mt-10 flex items-center justify-center gap-2 text-sm text-[var(--text-muted)]">

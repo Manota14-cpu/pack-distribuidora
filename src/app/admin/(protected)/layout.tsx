@@ -31,18 +31,6 @@ export default async function AdminPanelLayout({ children }: { children: React.R
                 Panel
               </Link>
               <Link
-                href="/admin/productos"
-                className="font-semibold text-[var(--text)] hover:text-[var(--green-primary)] transition-colors"
-              >
-                Productos
-              </Link>
-              <Link
-                href="/admin/importar"
-                className="font-semibold text-[var(--text)] hover:text-[var(--green-primary)] transition-colors"
-              >
-                Importar
-              </Link>
-              <Link
                 href="/"
                 target="_blank"
                 className="font-semibold text-[var(--text-muted)] hover:text-[var(--green-primary)] transition-colors"

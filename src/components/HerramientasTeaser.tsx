@@ -13,7 +13,7 @@ const CARDS = [
     href: "/herramientas#tu-rubro",
     icon: Store,
     title: "Armá tu rubro",
-    text: "Elegí tu tipo de negocio y encontrá el pack pensado para vos.",
+    text: "Elegí tu tipo de negocio y te armamos un pack a medida.",
     cta: "Elegir mi rubro",
   },
 ];

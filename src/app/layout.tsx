@@ -8,9 +8,6 @@ import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/700.css";
 import "@fontsource/manrope/800.css";
 import "./globals.css";
-import { CartProvider } from "@/lib/cart-context";
-import { CheckoutProvider } from "@/components/CheckoutForm";
-import { getCategories } from "@/lib/data/products";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
@@ -69,25 +66,20 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const categories = await getCategories();
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className="h-full antialiased" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col bg-[var(--white)] text-[var(--text)]">
-        <CartProvider>
-          <CheckoutProvider>
-            <a
-              href="#main-content"
-              className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-full focus:bg-[var(--green-primary)] focus:text-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
-            >
-              Saltar al contenido
-            </a>
-            <Header categories={categories} />
-            <main id="main-content" className="flex-1">{children}</main>
-            <Footer />
-            <Analytics />
-          </CheckoutProvider>
-        </CartProvider>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-full focus:bg-[var(--green-primary)] focus:text-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
+        >
+          Saltar al contenido
+        </a>
+        <Header />
+        <main id="main-content" className="flex-1">{children}</main>
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );

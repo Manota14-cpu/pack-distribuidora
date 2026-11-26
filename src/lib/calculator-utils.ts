@@ -1,5 +1,3 @@
-import type { Product } from "./types";
-
 // Cantidad estimada recomendada por persona (criterio general de gastronomía
 // para eventos de medio día — se puede ajustar libremente en el resultado).
 export const EVENT_RATIOS: Record<"vasos" | "platos" | "cubiertos" | "servilletas", number> = {
@@ -9,61 +7,33 @@ export const EVENT_RATIOS: Record<"vasos" | "platos" | "cubiertos" | "servilleta
   servilletas: 3,
 };
 
-export const EVENT_CATEGORY_LABELS: Record<keyof typeof EVENT_RATIOS, string> = {
+export type EventCategory = keyof typeof EVENT_RATIOS;
+
+export const EVENT_CATEGORY_LABELS: Record<EventCategory, string> = {
   vasos: "Vasos",
   platos: "Platos",
   cubiertos: "Cubiertos",
   servilletas: "Servilletas",
 };
 
-// Extrae la cantidad de unidades por paquete a partir del texto de la unidad
-// (ej. "x50u" -> 50). Si no se puede interpretar, asume 1 (venta por unidad).
-export function parsePackSize(unit: string): number {
-  const match = unit.match(/x?(\d+)\s*u?/i);
-  const n = match ? parseInt(match[1], 10) : NaN;
-  return Number.isFinite(n) && n > 0 ? n : 1;
-}
-
 export interface CalculatorLine {
-  category: keyof typeof EVENT_RATIOS;
-  product: Product;
-  neededUnits: number;
-  packSize: number;
-  packsToBuy: number;
-  subtotal: number;
+  category: EventCategory;
+  units: number;
 }
 
-export function buildCalculatorLines(
-  personas: number,
-  activeCategories: Set<keyof typeof EVENT_RATIOS>,
-  productByCategory: Partial<Record<keyof typeof EVENT_RATIOS, Product>>
-): CalculatorLine[] {
-  const lines: CalculatorLine[] = [];
-  for (const category of Object.keys(EVENT_RATIOS) as (keyof typeof EVENT_RATIOS)[]) {
-    if (!activeCategories.has(category)) continue;
-    const product = productByCategory[category];
-    if (!product) continue;
-    const neededUnits = Math.max(1, personas) * EVENT_RATIOS[category];
-    const packSize = parsePackSize(product.unit);
-    const packsToBuy = Math.ceil(neededUnits / packSize);
-    lines.push({
-      category,
-      product,
-      neededUnits,
-      packSize,
-      packsToBuy,
-      subtotal: packsToBuy * product.price,
-    });
-  }
-  return lines;
+/**
+ * Unidades sugeridas por categoría. Ya no elige productos ni arma el carrito:
+ * el catálogo vive en la tienda de Visual App, así que la calculadora dice
+ * cuánto hace falta y el cliente elige ahí la presentación.
+ */
+export function buildCalculatorLines(personas: number, activeCategories: Set<EventCategory>): CalculatorLine[] {
+  return (Object.keys(EVENT_RATIOS) as EventCategory[])
+    .filter((category) => activeCategories.has(category))
+    .map((category) => ({ category, units: Math.max(1, personas) * EVENT_RATIOS[category] }));
 }
 
-// Elige el producto mas representativo de una categoria: preferimos el mas
-// vendido, despues el destacado, y si no hay ninguno el primero disponible.
-export function pickRepresentativeProduct(products: Product[]): Product | undefined {
-  return (
-    products.find((p) => p.bestSeller) ??
-    products.find((p) => p.featured) ??
-    products[0]
-  );
+/** Mensaje de WhatsApp con el cálculo, para pedir que lo armen. */
+export function calculatorWhatsAppText(personas: number, lines: CalculatorLine[]): string {
+  const detalle = lines.map((l) => `• ${EVENT_CATEGORY_LABELS[l.category]}: ${l.units}`).join("\n");
+  return `Hola! Quiero armar un pedido para un evento de ${personas} personas:\n${detalle}`;
 }

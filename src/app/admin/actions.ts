@@ -45,6 +45,5 @@ export async function logoutAction() {
   redirect("/admin/login");
 }
 
-// Las acciones de productos vivían acá. El catálogo y el stock ahora se
-// administran desde AppPack, que trabaja sobre la misma tabla Product:
-// tener dos editores era la vía segura para que los números se contradijeran.
+// Productos, stock y pedidos se manejan en Visual App: la web no tiene
+// acciones de catálogo.

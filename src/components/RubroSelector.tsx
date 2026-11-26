@@ -8,30 +8,30 @@ import {
   Store,
   PartyPopper,
   UtensilsCrossed,
+  MessageCircle,
   type LucideIcon,
 } from "lucide-react";
-import type { Product } from "@/lib/types";
-import ProductCard from "./ProductCard";
+import { STORE_INFO } from "@/lib/content";
 
 interface Rubro {
   key: string;
   label: string;
   icon: LucideIcon;
-  slug: string;
 }
 
 const RUBROS: Rubro[] = [
-  { key: "verduleria", label: "Verdulería", icon: Carrot, slug: "pack-verduleria" },
-  { key: "carniceria", label: "Carnicería", icon: Beef, slug: "pack-carniceria" },
-  { key: "panaderia", label: "Panadería", icon: Croissant, slug: "pack-panaderia" },
-  { key: "kiosco", label: "Kiosco / almacén", icon: Store, slug: "pack-kiosco-almacen" },
-  { key: "eventos", label: "Eventos y cumpleaños", icon: PartyPopper, slug: "pack-cumpleanos" },
-  { key: "otro", label: "Otro rubro gastronómico", icon: UtensilsCrossed, slug: "pack-resto-rubros" },
+  { key: "verduleria", label: "Verdulería", icon: Carrot },
+  { key: "carniceria", label: "Carnicería", icon: Beef },
+  { key: "panaderia", label: "Panadería", icon: Croissant },
+  { key: "kiosco", label: "Kiosco / almacén", icon: Store },
+  { key: "eventos", label: "Eventos y cumpleaños", icon: PartyPopper },
+  { key: "otro", label: "Otro rubro gastronómico", icon: UtensilsCrossed },
 ];
 
-export default function RubroSelector({ packsBySlug }: { packsBySlug: Record<string, Product> }) {
+// Los packs armados por rubro eran productos de la tienda propia. Con el
+// catálogo en Visual App, el pack se arma a pedido por WhatsApp.
+export default function RubroSelector() {
   const [selected, setSelected] = useState<Rubro | null>(null);
-  const selectedProduct = selected ? packsBySlug[selected.slug] : undefined;
 
   return (
     <div className="rounded-3xl border border-[var(--gray)] bg-[var(--white)] p-6 sm:p-8">
@@ -44,7 +44,7 @@ export default function RubroSelector({ packsBySlug }: { packsBySlug: Record<str
             Armá tu rubro
           </h2>
           <p className="text-sm text-[var(--text-muted)]">
-            Elegí tu tipo de negocio y te mostramos el pack pensado para vos.
+            Elegí tu tipo de negocio y te armamos un pack a medida.
           </p>
         </div>
       </div>
@@ -78,21 +78,20 @@ export default function RubroSelector({ packsBySlug }: { packsBySlug: Record<str
       {selected && (
         <div className="mt-6">
           <div className="tear-strip mb-5" />
-          {selectedProduct ? (
-            <div>
-              <p className="text-sm font-semibold text-[var(--green-primary)] mb-3">
-                Recomendado para {selected.label.toLowerCase()}
-              </p>
-              <div className="max-w-xs">
-                <ProductCard product={selectedProduct} />
-              </div>
-            </div>
-          ) : (
-            <p className="text-sm text-[var(--text-muted)]">
-              Por ahora no tenemos un pack armado para este rubro — escribinos por
-              WhatsApp y te armamos uno a medida.
-            </p>
-          )}
+          <p className="text-sm text-[var(--text-muted)]">
+            Contanos qué vendés y cuánto movés por semana, y te armamos el pack para{" "}
+            {selected.label.toLowerCase()} con lo que más te conviene.
+          </p>
+          <a
+            href={`${STORE_INFO.whatsapp}?text=${encodeURIComponent(
+              `Hola! Quiero que me armen un pack para ${selected.label.toLowerCase()}.`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--green-primary)] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[var(--green-primary-hover)]"
+          >
+            <MessageCircle size={16} /> Pedir mi pack por WhatsApp
+          </a>
         </div>
       )}
     </div>

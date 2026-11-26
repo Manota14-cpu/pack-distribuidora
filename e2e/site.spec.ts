@@ -8,24 +8,12 @@ test.describe("Homepage", () => {
     await expect(page.locator("h1")).toContainText("Soluciones descartables");
   });
 
-  test("displays categories section", async ({ page }) => {
-    await page.goto("/");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByRole("heading", { level: 2, name: "Categorías" })).toBeVisible();
-  });
-
-  test("displays featured products", async ({ page }) => {
-    await page.goto("/");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByRole("heading", { level: 2, name: "Productos destacados" })).toBeVisible();
-  });
-
   test("navigate to products page", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
-    await page.getByRole("link", { name: "Ver todos los productos" }).click();
+    await page.locator("header").getByRole("link", { name: /Comprar online/ }).click();
     await expect(page).toHaveURL(/\/productos/);
-    await expect(page.locator("h1")).toContainText("Todos los productos");
+    await expect(page.locator("h1")).toContainText("Productos");
   });
 });
 
@@ -46,82 +34,19 @@ test.describe("Navigation", () => {
 });
 
 test.describe("Products Page", () => {
-  test("shows product cards", async ({ page }) => {
+  // La tienda la arma el script de Visual App adentro de este div.
+  test("mounts the Visual App store", async ({ page }) => {
     await page.goto("/productos");
-    await page.waitForLoadState("networkidle");
-    const cards = page.locator("[class*='rounded-2xl'][class*='border']");
-    await expect(cards.first()).toBeVisible();
+    const tienda = page.locator('[data-visual-app="pack-distriuidora"]');
+    await expect(tienda).toBeAttached();
+    await expect(tienda).toHaveAttribute("data-va-montada", "1", { timeout: 15000 });
   });
 
-  test("category filter works", async ({ page }) => {
-    await page.goto("/productos?categoria=vasos");
-    await page.waitForLoadState("networkidle");
-    await expect(page.locator("h1")).toContainText("Todos los productos");
-  });
-
-  test("sort dropdown exists", async ({ page }) => {
-    await page.goto("/productos");
-    await page.waitForLoadState("networkidle");
-    await expect(page.locator("select")).toBeVisible();
-  });
-});
-
-test.describe("Product Detail", () => {
-  test("shows product info", async ({ page }) => {
-    await page.goto("/productos/vaso-plastico-500cc-x50");
-    await page.waitForLoadState("networkidle");
-    await expect(page.locator("h1")).toContainText("Vaso plástico descartable 500cc");
-  });
-
-  test("shows price", async ({ page }) => {
-    await page.goto("/productos/vaso-plastico-500cc-x50");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByText("$1.250").first()).toBeVisible();
-  });
-
-  test("shows features list", async ({ page }) => {
-    await page.goto("/productos/vaso-plastico-500cc-x50");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByRole("heading", { level: 2, name: "Características" })).toBeVisible();
-  });
-
-  test("shows breadcrumb navigation", async ({ page }) => {
-    await page.goto("/productos/vaso-plastico-500cc-x50");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByRole("navigation", { name: "Migas de pan" })).toBeVisible();
-  });
-
-  test("add to cart button exists", async ({ page }) => {
-    await page.goto("/productos/vaso-plastico-500cc-x50");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByRole("button", { name: "Agregar al carrito" })).toBeVisible();
-  });
-
-  test("buy now button exists", async ({ page }) => {
-    await page.goto("/productos/vaso-plastico-500cc-x50");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByRole("button", { name: "Comprar ahora" })).toBeVisible();
-  });
-});
-
-test.describe("Cart", () => {
-  test("add item opens cart drawer", async ({ page }) => {
-    await page.goto("/productos/vaso-plastico-500cc-x50");
-    await page.waitForLoadState("networkidle");
-    await page.getByRole("button", { name: "Agregar al carrito" }).click();
-    await expect(page.locator('[role="dialog"][aria-label="Carrito de compras"]')).toBeVisible();
-  });
-
-  test("empty cart shows message", async ({ page }) => {
-    await page.goto("/carrito");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByText("Tu carrito está vacío")).toBeVisible();
-  });
-
-  test("cart page shows products link when empty", async ({ page }) => {
-    await page.goto("/carrito");
-    await page.waitForLoadState("networkidle");
-    await expect(page.getByRole("link", { name: "Ver productos" })).toBeVisible();
+  test("old product and cart pages are gone", async ({ page }) => {
+    for (const ruta of ["/carrito", "/productos/vaso-plastico-500cc-x50"]) {
+      await page.goto(ruta, { waitUntil: "networkidle" });
+      await expect(page.getByText("Página no encontrada")).toBeVisible();
+    }
   });
 });
 
@@ -188,9 +113,4 @@ test.describe("SEO & Accessibility", () => {
     await expect(jsonLd).toBeAttached();
   });
 
-  test("JSON-LD is present on product page", async ({ page }) => {
-    await page.goto("/productos/vaso-plastico-500cc-x50");
-    const jsonLd = page.locator('script[type="application/ld+json"]');
-    await expect(jsonLd.first()).toBeAttached();
-  });
 });

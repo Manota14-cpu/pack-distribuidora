@@ -34,7 +34,7 @@ const SLIDES: Slide[] = [
     icon: Tags,
     title: "Precios competitivos",
     text: "Buscamos ofrecerte los mejores precios para acompañar tu negocio.",
-    cta: { label: "Ver ofertas", href: "/productos?ofertas=1" },
+    cta: { label: "Ver precios", href: "/productos" },
   },
   {
     icon: Truck,
