@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { MessageCircle, Mail, MapPin, Camera } from "lucide-react";
 import { HELP_LINKS, STORE_INFO } from "@/lib/content";
+import { CATEGORIAS } from "@/lib/catalogo";
 import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer id="contacto" className="bg-[var(--green-primary)]">
-      <div className="mx-auto max-w-7xl px-6 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div>
+      <div className="mx-auto max-w-7xl px-6 py-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="lg:col-span-1">
           <Logo compact />
           <p className="mt-3 text-sm text-white/80 max-w-xs">
             Soluciones prácticas para el día a día.
@@ -33,6 +34,19 @@ export default function Footer() {
             <li><Link href="/herramientas" className="transition-colors hover:text-white">Herramientas</Link></li>
             <li><Link href="/nosotros" className="transition-colors hover:text-white">Nosotros</Link></li>
             <li><Link href="/contacto" className="transition-colors hover:text-white">Contacto</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-sm font-semibold mb-4 text-white">Categorías</h4>
+          <ul className="flex flex-col gap-2.5 text-sm text-white/80">
+            {CATEGORIAS.slice(0, 7).map((c) => (
+              <li key={c.slug}>
+                <Link href={`/productos?categoria=${c.slug}`} className="transition-colors hover:text-white">
+                  {c.nombre}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

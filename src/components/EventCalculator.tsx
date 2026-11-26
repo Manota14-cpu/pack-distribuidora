@@ -106,10 +106,15 @@ export default function EventCalculator() {
         <>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
             {lines.map((line) => (
-              <div key={line.category} className="rounded-xl bg-[var(--gray-light)] px-4 py-3">
+              <Link
+                key={line.category}
+                href={`/productos?categoria=${line.category}`}
+                className="rounded-xl bg-[var(--gray-light)] px-4 py-3 transition-colors hover:bg-[var(--green-primary)]/10"
+              >
                 <p className="text-xs text-[var(--text-muted)]">{EVENT_CATEGORY_LABELS[line.category]}</p>
                 <p className="font-display text-2xl font-bold tabular-nums">{line.units}</p>
-              </div>
+                <p className="text-xs font-semibold text-[var(--green-primary)]">Ver opciones →</p>
+              </Link>
             ))}
           </div>
 

@@ -11,9 +11,9 @@ test.describe("Homepage", () => {
   test("navigate to products page", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
-    await page.locator("header").getByRole("link", { name: /Comprar online/ }).click();
+    await page.getByRole("link", { name: /Ver todos los productos/ }).first().click();
     await expect(page).toHaveURL(/\/productos/);
-    await expect(page.locator("h1")).toContainText("Productos");
+    await expect(page.locator("h1")).toContainText("Todos los productos");
   });
 });
 
@@ -33,20 +33,38 @@ test.describe("Navigation", () => {
   });
 });
 
-test.describe("Products Page", () => {
-  // La tienda la arma el script de Visual App adentro de este div.
-  test("mounts the Visual App store", async ({ page }) => {
-    await page.goto("/productos");
-    const tienda = page.locator('[data-visual-app="pack-distriuidora"]');
-    await expect(tienda).toBeAttached();
-    await expect(tienda).toHaveAttribute("data-va-montada", "1", { timeout: 15000 });
+test.describe("Tienda", () => {
+  test("lista productos y filtra por categoría", async ({ page }) => {
+    await page.goto("/productos?categoria=vasos");
+    await expect(page.locator("h1")).toContainText("Vasos");
+    await expect(page.locator("article").first()).toBeVisible();
   });
 
-  test("old product and cart pages are gone", async ({ page }) => {
-    for (const ruta of ["/carrito", "/productos/vaso-plastico-500cc-x50"]) {
-      await page.goto(ruta, { waitUntil: "networkidle" });
-      await expect(page.getByText("Página no encontrada")).toBeVisible();
-    }
+  test("la ficha de producto tiene precio y botón de compra", async ({ page }) => {
+    await page.goto("/productos");
+    const primero = page.locator("article h3").first();
+    const nombre = await primero.textContent();
+    await primero.click();
+    await expect(page).toHaveURL(/\/productos\/.+-[0-9a-f]{8}$/);
+    await expect(page.locator("h1")).toHaveText(nombre!.trim());
+    await expect(page.getByRole("button", { name: "Agregar al carrito" })).toBeVisible();
+    await expect(page.getByRole("navigation", { name: "Migas de pan" })).toBeVisible();
+  });
+
+  test("agregar al carrito abre el carrito y lleva al checkout", async ({ page }) => {
+    await page.goto("/productos?stock=1");
+    await page.getByRole("button", { name: "Agregar" }).first().click();
+    await page.getByRole("button", { name: /^Carrito/ }).click();
+    const carrito = page.getByRole("dialog", { name: "Carrito de compras" });
+    await expect(carrito).toBeVisible();
+    await carrito.getByRole("link", { name: /Finalizar compra/ }).click();
+    await expect(page.locator("h1")).toContainText("Finalizar compra");
+    await expect(page.getByLabel("Nombre y apellido")).toBeVisible();
+  });
+
+  test("carrito vacío", async ({ page }) => {
+    await page.goto("/carrito");
+    await expect(page.getByText("Tu carrito está vacío")).toBeVisible();
   });
 });
 

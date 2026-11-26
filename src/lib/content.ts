@@ -153,6 +153,7 @@ export const HELP_LINKS = [
   { href: "/informacion-de-compra#pagos", label: "Formas de pago" },
   { href: "/herramientas", label: "Herramientas" },
   { href: "/guias", label: "Guías" },
+  { href: "/arrepentimiento", label: "Botón de arrepentimiento" },
 ];
 
 // ---- Preguntas frecuentes (envíos + registro mayorista) ----

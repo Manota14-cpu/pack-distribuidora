@@ -6,6 +6,8 @@ import Wholesale from "@/components/Wholesale";
 import ImageCarouselSection from "@/components/ImageCarouselSection";
 import Newsletter from "@/components/Newsletter";
 import { STORE_INFO } from "@/lib/content";
+import { getCatalogoSeguro } from "@/lib/catalogo-server";
+import { CategoriasHome, DestacadosHome } from "@/components/tienda/SeccionesHome";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -34,7 +36,11 @@ const JSON_LD = {
   },
 };
 
-export default function Home() {
+// Los destacados y las categorías salen del catálogo de Visual App.
+export const revalidate = 60;
+
+export default async function Home() {
+  const catalogo = await getCatalogoSeguro();
   return (
     <>
       <script
@@ -44,6 +50,8 @@ export default function Home() {
       <PromoCarousel />
       <Hero />
       <TrustBanner />
+      {catalogo && <DestacadosHome catalogo={catalogo} />}
+      {catalogo && <CategoriasHome catalogo={catalogo} />}
       <HerramientasTeaser />
       <Wholesale />
       <ImageCarouselSection />

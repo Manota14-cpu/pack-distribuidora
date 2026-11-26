@@ -11,6 +11,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
+import { CarritoProvider } from "@/lib/carrito";
 
 export const metadata: Metadata = {
   title: {
@@ -76,9 +77,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Saltar al contenido
         </a>
-        <Header />
-        <main id="main-content" className="flex-1">{children}</main>
-        <Footer />
+        <CarritoProvider>
+          <Header />
+          <main id="main-content" className="flex-1">{children}</main>
+          <Footer />
+        </CarritoProvider>
         <Analytics />
       </body>
     </html>
