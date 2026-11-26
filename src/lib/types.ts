@@ -8,7 +8,8 @@ export type CategorySlug =
   | "servilletas"
   | "gastronomia"
   | "eventos"
-  | "limpieza";
+  | "limpieza"
+  | "libreria";
 
 export interface Category {
   slug: CategorySlug;

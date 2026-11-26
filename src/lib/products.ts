@@ -11,6 +11,7 @@ export const categories: Category[] = [
   { slug: "gastronomia", name: "Productos para gastronomía", icon: "ChefHat", description: "Todo para tu local" },
   { slug: "eventos", name: "Productos para eventos", icon: "PartyPopper", description: "Fiestas, cumpleaños y celebraciones" },
   { slug: "limpieza", name: "Productos de limpieza", icon: "SprayCan", description: "Descartables para higiene diaria" },
+  { slug: "libreria", name: "Librería y comercio", icon: "PenLine", description: "Etiquetas, cintas, marcadores y artículos de mostrador" },
 ];
 
 export const products: Product[] = [
