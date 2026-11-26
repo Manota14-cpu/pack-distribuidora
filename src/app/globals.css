@@ -9,6 +9,17 @@
   --text: #102015;
   --text-muted: #4d5c51;
 
+  /* Segundo color: amarillo cálido para lo que tiene que resaltar (botón
+     principal, ofertas, últimas unidades, contador del carrito). El verde
+     sigue siendo la marca; el amarillo se usa poco para que destaque. */
+  --accent: #f6c33b;
+  --accent-hover: #ecb21a;
+  --accent-ink: #3a2a00;
+  --accent-soft: #fff6dc;
+
+  /* Verde muy claro para fondos (ilustraciones de productos sin foto, chips). */
+  --green-soft: #eaf2ec;
+
   --font-display: "Space Grotesk";
   --font-body: "Manrope";
 }
@@ -20,6 +31,11 @@
   --color-gray: var(--gray);
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-green-soft: var(--green-soft);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }

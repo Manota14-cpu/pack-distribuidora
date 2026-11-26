@@ -1,9 +1,7 @@
 import Hero from "@/components/Hero";
-import PromoCarousel from "@/components/PromoCarousel";
-import TrustBanner from "@/components/TrustBanner";
+import Beneficios from "@/components/Beneficios";
 import HerramientasTeaser from "@/components/HerramientasTeaser";
 import Wholesale from "@/components/Wholesale";
-import ImageCarouselSection from "@/components/ImageCarouselSection";
 import Newsletter from "@/components/Newsletter";
 import { STORE_INFO } from "@/lib/content";
 import { getCatalogoSeguro } from "@/lib/catalogo-server";
@@ -47,14 +45,12 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
-      <PromoCarousel />
       <Hero />
-      <TrustBanner />
-      {catalogo && <DestacadosHome catalogo={catalogo} />}
+      <Beneficios />
       {catalogo && <CategoriasHome catalogo={catalogo} />}
+      {catalogo && <DestacadosHome catalogo={catalogo} />}
       <HerramientasTeaser />
       <Wholesale />
-      <ImageCarouselSection />
       <Newsletter />
     </>
   );

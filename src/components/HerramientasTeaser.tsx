@@ -20,7 +20,7 @@ const CARDS = [
 
 export default function HerramientasTeaser() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-4">
+    <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
       <div className="grid sm:grid-cols-2 gap-4">
         {CARDS.map(({ href, icon: Icon, title, text, cta }) => (
           <Link

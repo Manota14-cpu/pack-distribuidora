@@ -34,6 +34,7 @@ export default function ProductoImagen({
         icon={categoriaPorSlug(categoria)?.icono ?? "Package"}
         className={className}
         iconClassName={iconClassName}
+        variante="suave"
       />
     );
   }

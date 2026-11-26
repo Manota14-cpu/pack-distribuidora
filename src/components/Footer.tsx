@@ -7,8 +7,8 @@ import Logo from "./Logo";
 export default function Footer() {
   return (
     <footer id="contacto" className="bg-[var(--green-primary)]">
-      <div className="mx-auto max-w-7xl px-6 py-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
-        <div className="lg:col-span-1">
+      <div className="mx-auto max-w-7xl px-6 py-12 md:py-14 grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10">
+        <div className="col-span-2 lg:col-span-1">
           <Logo compact />
           <p className="mt-3 text-sm text-white/80 max-w-xs">
             Soluciones prácticas para el día a día.
@@ -79,7 +79,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Mail size={15} className="text-white/70 shrink-0" />
-              <a href={`mailto:${STORE_INFO.email}`} className="hover:text-white transition-colors">
+              <a href={`mailto:${STORE_INFO.email}`} className="break-all hover:text-white transition-colors">
                 {STORE_INFO.email}
               </a>
             </li>

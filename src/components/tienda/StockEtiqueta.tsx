@@ -12,7 +12,9 @@ export default function StockEtiqueta({
   }
   if (quedanPocas(producto)) {
     return (
-      <span className={`text-xs font-semibold text-amber-700 ${className}`}>
+      <span
+        className={`inline-flex w-fit items-center rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-xs font-bold text-[var(--accent-ink)] ring-1 ring-[var(--accent)]/60 ${className}`}
+      >
         ¡Últimas {producto.stock} unidades!
       </span>
     );

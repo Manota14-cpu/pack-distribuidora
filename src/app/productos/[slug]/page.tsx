@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { ChevronRight, CreditCard, RotateCcw, Store, Truck } from "lucide-react";
 import { getCatalogo } from "@/lib/catalogo-server";
-import { buscarPorSlug, categoriaPorSlug, plata, precioPor, type Producto } from "@/lib/catalogo";
+import { buscarPorSlug, categoriaPorSlug, datosDelNombre, plata, precioPor, type Producto } from "@/lib/catalogo";
 import GaleriaProducto from "@/components/tienda/GaleriaProducto";
 import AccionesProducto from "@/components/tienda/AccionesProducto";
 import StockEtiqueta from "@/components/tienda/StockEtiqueta";
@@ -58,6 +58,13 @@ export default async function ProductoPage({ params }: Props) {
 
   const categoria = categoriaPorSlug(producto.categoria);
   const otros = relacionados(catalogo.productos, producto);
+  const conFoto = producto.imagenes.length > 0;
+  const caracteristicas = [
+    ...(categoria ? [{ etiqueta: "Categoría", valor: categoria.nombre }] : []),
+    ...datosDelNombre(producto.nombre, producto.categoria),
+    { etiqueta: "Se vende", valor: producto.porPeso ? `por peso (precio ${precioPor(producto)})` : "por unidad" },
+    { etiqueta: "Código", valor: producto.id.slice(0, 8).toUpperCase() },
+  ];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -96,7 +103,8 @@ export default async function ProductoPage({ params }: Props) {
         )}
       </nav>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:gap-14">
+      {/* Sin foto, la ilustración ocupa menos: era media pantalla de un cuadrado vacío. */}
+      <div className={`grid gap-8 lg:gap-14 ${conFoto ? "md:grid-cols-2" : "md:grid-cols-[2fr_3fr]"}`}>
         <GaleriaProducto imagenes={producto.imagenes} nombre={producto.nombre} categoria={producto.categoria} />
 
         <div className="flex flex-col gap-5">
@@ -123,6 +131,23 @@ export default async function ProductoPage({ params }: Props) {
           </div>
 
           <AccionesProducto producto={producto} />
+
+          <section aria-labelledby="caracteristicas" className="rounded-2xl bg-[var(--gray-light)] p-5">
+            <h2 id="caracteristicas" className="font-display text-base font-bold">
+              Características
+            </h2>
+            <dl className="mt-3 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+              {caracteristicas.map((d) => (
+                <div key={d.etiqueta} className="flex justify-between gap-3 border-b border-[var(--gray)] pb-2">
+                  <dt className="text-[var(--text-muted)]">{d.etiqueta}</dt>
+                  <dd className="text-right font-semibold">{d.valor}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-3 text-xs text-[var(--text-muted)]">
+              ¿Necesitás otra medida o más cantidad? Consultanos por WhatsApp: tenemos precios por volumen.
+            </p>
+          </section>
 
           <ul className="mt-2 grid gap-3 rounded-2xl border border-[var(--gray)] p-5 text-sm sm:grid-cols-2">
             <Beneficio icono={Truck} titulo="Envíos a todo el país" texto="Despachamos en 24/48 hs hábiles." href="/informacion-de-compra#envios" />

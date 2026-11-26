@@ -114,7 +114,7 @@ export default function ExplorarProductos({ catalogo }: { catalogo: Catalogo }) 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10">
       {catalogo.promociones.length > 0 && (
-        <div className="mb-6 flex items-start gap-3 rounded-2xl bg-[var(--green-primary)] px-5 py-4 text-sm text-white">
+        <div className="mb-6 flex items-start gap-3 rounded-2xl bg-[var(--accent)] px-5 py-4 text-sm text-[var(--accent-ink)]">
           <Tag size={18} className="mt-0.5 shrink-0" />
           <p>
             <strong>Promociones: </strong>

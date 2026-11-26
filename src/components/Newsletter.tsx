@@ -34,14 +34,14 @@ export default function Newsletter() {
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-      <div className="rounded-3xl bg-[var(--green-primary)] px-6 py-12 md:px-16 md:py-14 text-center flex flex-col items-center">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 mb-4">
-          <Mail size={20} className="text-white" />
+      <div className="rounded-3xl bg-[var(--accent-soft)] ring-1 ring-[var(--accent)]/50 px-6 py-12 md:px-16 md:py-14 text-center flex flex-col items-center">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent)] mb-4">
+          <Mail size={20} className="text-[var(--accent-ink)]" />
         </div>
-        <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text)]">
           ¡Enterate primero de nuestras ofertas!
         </h2>
-        <p className="mt-2 text-white/85 max-w-md">
+        <p className="mt-2 text-[var(--text-muted)] max-w-md">
           Suscribite y recibí novedades, promociones y descuentos exclusivos.
         </p>
         <form
@@ -62,24 +62,24 @@ export default function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Tu correo electrónico"
-            className="flex-1 rounded-full border border-white/20 bg-white px-5 py-3 text-sm outline-none focus:border-white/60"
+            className="flex-1 rounded-full border border-[var(--gray)] bg-white px-5 py-3 text-sm outline-none focus:border-[var(--green-primary)]"
           />
           <button
             type="submit"
             disabled={sending}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-[var(--green-primary)] text-sm font-semibold px-6 py-3 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] disabled:opacity-60 disabled:translate-y-0 disabled:shadow-none transition-all"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--green-primary)] text-white text-sm font-semibold px-6 py-3 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.4)] hover:bg-[var(--green-primary-hover)] hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(0,0,0,0.45)] disabled:opacity-60 disabled:translate-y-0 disabled:shadow-none transition-all"
           >
             {sent ? "¡Listo!" : sending ? "Suscribiendo…" : "Suscribirme"}
             {!sent && !sending && <Send size={15} />}
           </button>
         </form>
         {error && (
-          <p role="alert" className="mt-3 text-sm font-medium text-red-400">
+          <p role="alert" className="mt-3 text-sm font-medium text-red-600">
             {error}
           </p>
         )}
         {sent && (
-          <p className="mt-3 text-sm font-medium text-white">
+          <p className="mt-3 text-sm font-medium text-[var(--green-primary)]">
             ¡Estás suscrito! Vas a recibir nuestras novedades.
           </p>
         )}

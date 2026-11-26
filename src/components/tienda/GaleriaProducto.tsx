@@ -36,13 +36,16 @@ export default function GaleriaProducto({
 
   if (total === 0) {
     return (
-      <ProductoImagen
-        src={null}
-        nombre={nombre}
-        categoria={categoria}
-        className="aspect-square w-full"
-        iconClassName="h-32 w-32"
-      />
+      <div className="flex flex-col gap-2">
+        <ProductoImagen
+          src={null}
+          nombre={nombre}
+          categoria={categoria}
+          className="aspect-[4/3] w-full"
+          iconClassName="h-24 w-24"
+        />
+        <p className="text-center text-xs text-[var(--text-muted)]">Foto ilustrativa de la categoría</p>
+      </div>
     );
   }
 

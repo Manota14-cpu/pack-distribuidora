@@ -54,7 +54,7 @@ export default function Header() {
                 <ShoppingCart size={22} />
                 <span className="hidden lg:inline">Carrito</span>
                 {cantidadProductos > 0 && (
-                  <span className="absolute -top-0.5 right-0 flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1 text-[11px] font-bold text-[var(--green-primary)] lg:left-6 lg:right-auto">
+                  <span className="absolute -top-0.5 right-0 flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--accent)] px-1 text-[11px] font-bold text-[var(--accent-ink)] lg:left-6 lg:right-auto">
                     {cantidadProductos}
                   </span>
                 )}
