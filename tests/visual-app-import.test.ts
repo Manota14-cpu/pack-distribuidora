@@ -108,6 +108,7 @@ describe("planificarImportacion", () => {
       {
         id: "a",
         feedId: "a",
+        nombre: "BOLSA FB3 AZUL",
         coincidencia: "id",
         price: { antes: 100, despues: 250 },
         stock: { antes: 10, despues: 3 },
@@ -116,6 +117,7 @@ describe("planificarImportacion", () => {
       {
         id: "viejo",
         feedId: "b",
+        nombre: "Vaso Térmico",
         coincidencia: "nombre",
         name: { antes: "VASO TERMICO", despues: "Vaso Térmico" },
         active: { antes: true, despues: false },

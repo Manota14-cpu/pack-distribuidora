@@ -146,6 +146,8 @@ export interface Alta {
 export interface Cambio {
   id: string;
   feedId: string;
+  /** Nombre con el que queda el producto (el del feed). */
+  nombre: string;
   /** Cómo se encontró el producto en la base. */
   coincidencia: "id" | "nombre";
   name?: { antes: string; despues: string };
@@ -223,6 +225,7 @@ export function planificarImportacion(
       const cambio: Cambio = {
         id: existente.id,
         feedId: item.id,
+        nombre: name,
         coincidencia,
         imagenesNuevas: imagenes.filter((url) => !fotosActuales.includes(url)),
       };

@@ -6,6 +6,7 @@ import {
   Mail,
   Users,
   ArrowRight,
+  Download,
 } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { APPPACK_PEDIDOS, APPPACK_PRODUCTOS } from "@/lib/apppack";
@@ -71,6 +72,15 @@ export default async function AdminDashboard() {
         >
           <span className="flex items-center gap-3">
             <Layers size={18} className="text-[var(--green-primary)]" /> Ver el catálogo y su stock
+          </span>
+          <ArrowRight size={16} />
+        </Link>
+        <Link
+          href="/admin/importar"
+          className="flex items-center justify-between rounded-xl border border-[var(--gray)] px-5 py-4 text-sm font-semibold hover:border-[var(--green-primary)] hover:text-[var(--green-primary)] transition-colors"
+        >
+          <span className="flex items-center gap-3">
+            <Download size={18} className="text-[var(--green-primary)]" /> Importar productos de Visual App
           </span>
           <ArrowRight size={16} />
         </Link>
