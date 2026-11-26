@@ -10,11 +10,6 @@ datasource db {
 // La web solo guarda lo que llega por sus formularios: mensajes de contacto y
 // suscripciones al newsletter. Productos, stock, pedidos y cobros están en
 // Visual App.
-//
-// OJO: la base todavía tiene las tablas de cuando se usaba AppPack (Product,
-// Order, CashSession, Expense, etc.) con sus datos. Este esquema ya no las
-// nombra, así que `prisma db push` querría BORRARLAS. Prisma frena y pide
-// confirmación antes de perder datos: no confirmar sin haber hecho una copia.
 
 model Lead {
   id        String   @id @default(cuid())
