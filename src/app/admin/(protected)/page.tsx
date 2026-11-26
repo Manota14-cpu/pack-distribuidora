@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { ArrowRight, Mail, ShoppingBag, Users } from "lucide-react";
+import { ArrowRight, Mail, ShoppingBag, Trash2, Users } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { buscarRestos } from "@/lib/limpieza-base";
 
 export default async function AdminDashboard() {
-  const [leads, subscribers] = await Promise.all([
+  const [leads, subscribers, restos] = await Promise.all([
     prisma.lead.count(),
     prisma.newsletterSubscriber.count(),
+    buscarRestos(),
   ]);
 
   const stats = [
@@ -22,6 +24,22 @@ export default async function AdminDashboard() {
           contactos que llegan por la web.
         </p>
       </div>
+
+      {restos.length > 0 && (
+        <Link
+          href="/admin/limpiar"
+          className="flex items-center justify-between gap-4 rounded-2xl border border-red-200 bg-red-50 px-6 py-5 text-sm text-red-700 transition-colors hover:border-red-400"
+        >
+          <span className="flex items-center gap-3">
+            <Trash2 size={18} className="shrink-0" />
+            <span>
+              <strong className="block">Quedan datos de la app anterior en la base</strong>
+              Pedidos, caja, gastos y productos viejos que la web ya no usa. Tocá acá para borrarlos.
+            </span>
+          </span>
+          <ArrowRight size={16} className="shrink-0" />
+        </Link>
+      )}
 
       <div className="grid sm:grid-cols-2 gap-4">
         {stats.map((s) => (
